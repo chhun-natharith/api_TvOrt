@@ -74,14 +74,14 @@ export class ProductsService {
 
   async remove(id: string): Promise<void> {
     await this.findOne(id);
-    
+
     // Delete all product images from filesystem
     const images = await this.productsRepository.findImagesByProductId(id);
     images.forEach((img) => {
       const fullPath = getFullFilePath(img.imageUrl);
       deleteFile(fullPath);
     });
-    
+
     await this.productsRepository.delete(id);
   }
 
@@ -127,9 +127,8 @@ export class ProductsService {
 
   async getProductImages(productId: string): Promise<ProductImageEntity[]> {
     await this.findOne(productId);
-    const images = await this.productsRepository.findImagesByProductId(
-      productId,
-    );
+    const images =
+      await this.productsRepository.findImagesByProductId(productId);
     return images.map((img) => this.toImageEntity(img));
   }
 

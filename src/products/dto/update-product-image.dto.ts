@@ -2,7 +2,10 @@ import { IsBoolean, IsInt, IsOptional, IsString, Min } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateProductImageDto {
-  @ApiProperty({ description: 'Alternative text for accessibility', required: false })
+  @ApiProperty({
+    description: 'Alternative text for accessibility',
+    required: false,
+  })
   @IsOptional()
   @IsString()
   altText?: string;

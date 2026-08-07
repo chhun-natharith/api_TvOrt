@@ -40,10 +40,7 @@ export class OrdersController {
     summary:
       'List orders. Callers with `orders:read` see all; others see only their own',
   })
-  findAll(
-    @CurrentUser() user: JwtPayload,
-    @Query() pagination: PaginationDto,
-  ) {
+  findAll(@CurrentUser() user: JwtPayload, @Query() pagination: PaginationDto) {
     const canReadAll = user.permissions.includes(PERMISSIONS.ORDERS_READ);
     return this.ordersService.findAll(
       pagination,

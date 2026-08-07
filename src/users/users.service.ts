@@ -97,7 +97,9 @@ export class UsersService {
     return new UserEntity(user);
   }
 
-  findByEmailWithPermissions(email: string): Promise<UserWithPermissions | null> {
+  findByEmailWithPermissions(
+    email: string,
+  ): Promise<UserWithPermissions | null> {
     return this.usersRepository.findByEmailWithPermissions(email);
   }
 

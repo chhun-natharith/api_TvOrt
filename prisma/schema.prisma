@@ -38,6 +38,7 @@ model User {
   roleId       Int?
   role         Role?      @relation(fields: [roleId], references: [id])
   orders       Order[]
+  media        Media[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
@@ -184,4 +185,23 @@ model ProductImage {
 
   @@index([productId])
   @@map("product_images")
+}
+
+model Media {
+  id           String   @id @default(uuid())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  key          String   @unique
+  url          String
+  bucket       String
+  provider     String   @default("S3")
+  uploaderId   Int?
+  uploader     User?    @relation(fields: [uploaderId], references: [id], onDelete: SetNull)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([uploaderId])
+  @@map("media")
 }

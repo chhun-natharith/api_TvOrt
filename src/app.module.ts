@@ -14,6 +14,8 @@ import { ProductVariantsModule } from './product-variants/product-variants.modul
 import { ProductsModule } from './products/products.module';
 import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
+import { StorageModule } from './storage/storage.module';
+import { MediaModule } from './media/media.module';
 
 @Module({
   imports: [
@@ -22,6 +24,8 @@ import { UsersModule } from './users/users.module';
       load: [configuration],
     }),
     PrismaModule,
+    StorageModule,
+    MediaModule,
     AuthModule,
     UsersModule,
     RolesModule,

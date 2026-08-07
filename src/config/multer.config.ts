@@ -5,7 +5,12 @@ import { BadRequestException } from '@nestjs/common';
 import { MulterOptions } from '@nestjs/platform-express/multer/interfaces/multer-options.interface';
 
 // Allowed image types
-const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+const ALLOWED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp',
+];
 
 // Max file sizes
 export const MAX_USER_IMAGE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -76,7 +81,8 @@ export const productImageMulterConfig: MulterOptions = {
   storage: diskStorage({
     destination: (req, file, callback) => {
       ensureUploadDirs();
-      const productId = (req as any).params?.id || (req as any).params?.productId;
+      const productId =
+        (req as any).params?.id || (req as any).params?.productId;
       if (productId) {
         const productDir = join(PRODUCT_UPLOAD_DIR, String(productId));
         if (!existsSync(productDir)) {
