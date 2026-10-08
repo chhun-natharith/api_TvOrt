@@ -20,17 +20,13 @@ import {
   ApiBody,
   ApiBearerAuth,
 } from '@nestjs/swagger';
+import { PERMISSIONS } from '../common/constants';
+import { RequirePermissions } from '../common/decorators/require-permissions.decorator';
 import { MediaService } from './media.service';
 import { QueryMediaDto } from './dto/query-media.dto';
 import { FileValidationPipe } from '../common/pipes/file-validation.pipe';
 import { FileCountValidationPipe } from '../common/pipes/file-count-validation.pipe';
-
-interface RequestWithUser {
-  user?: {
-    id: number;
-    [key: string]: any;
-  };
-}
+import type { AuthenticatedRequest } from '../common/interfaces/authenticated-request.interface';
 
 @ApiTags('Media')
 @ApiBearerAuth()
@@ -42,6 +38,7 @@ export class MediaController {
    * Single file upload endpoint (multipart/form-data)
    */
   @Post('upload')
+  @RequirePermissions(PERMISSIONS.MEDIA_WRITE)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
     summary: 'Upload single file to object storage & save metadata',
@@ -75,9 +72,9 @@ export class MediaController {
       }),
     )
     file: Express.Multer.File,
-    @Req() req: RequestWithUser,
+    @Req() req: AuthenticatedRequest,
   ) {
-    const uploaderId = req.user?.id;
+    const uploaderId = req.user?.sub;
     return this.mediaService.uploadMedia(file, uploaderId);
   }
 
@@ -85,6 +82,7 @@ export class MediaController {
    * Multiple file batch upload endpoint (multipart/form-data)
    */
   @Post('upload-multiple')
+  @RequirePermissions(PERMISSIONS.MEDIA_WRITE)
   @HttpCode(HttpStatus.CREATED)
   @ApiOperation({
     summary:
@@ -123,9 +121,9 @@ export class MediaController {
       }),
     )
     files: Express.Multer.File[],
-    @Req() req: RequestWithUser,
+    @Req() req: AuthenticatedRequest,
   ) {
-    const uploaderId = req.user?.id;
+    const uploaderId = req.user?.sub;
     return this.mediaService.uploadMultipleMedia(files, uploaderId);
   }
 
@@ -133,6 +131,7 @@ export class MediaController {
    * List all media records with pagination and filters
    */
   @Get()
+  @RequirePermissions(PERMISSIONS.MEDIA_READ)
   @ApiOperation({ summary: 'List media items with pagination' })
   async findAll(@Query() query: QueryMediaDto) {
     return this.mediaService.findAll(query);
@@ -142,6 +141,7 @@ export class MediaController {
    * Get media item metadata by ID
    */
   @Get(':id')
+  @RequirePermissions(PERMISSIONS.MEDIA_READ)
   @ApiOperation({ summary: 'Get media metadata by ID' })
   async findOne(@Param('id') id: string) {
     return this.mediaService.getMediaById(id);
@@ -151,6 +151,7 @@ export class MediaController {
    * Delete media file & metadata by ID
    */
   @Delete(':id')
+  @RequirePermissions(PERMISSIONS.MEDIA_DELETE)
   @ApiOperation({ summary: 'Delete media file from storage and database' })
   async remove(@Param('id') id: string) {
     return this.mediaService.remove(id);

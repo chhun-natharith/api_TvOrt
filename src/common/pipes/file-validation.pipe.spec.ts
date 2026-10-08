@@ -1,3 +1,4 @@
+import { Readable } from 'stream';
 import { BadRequestException } from '@nestjs/common';
 import { FileValidationPipe } from './file-validation.pipe';
 
@@ -16,19 +17,18 @@ describe('FileValidationPipe', () => {
     mimetype: string,
     size: number,
     buffer?: Buffer,
-  ): Express.Multer.File =>
-    ({
-      fieldname: 'file',
-      originalname,
-      encoding: '7bit',
-      mimetype,
-      size,
-      buffer: buffer || Buffer.from([0xff, 0xd8, 0xff]), // JPEG header
-      destination: '',
-      filename: originalname,
-      path: '',
-      stream: null as any,
-    }) as Express.Multer.File;
+  ): Express.Multer.File => ({
+    fieldname: 'file',
+    originalname,
+    encoding: '7bit',
+    mimetype,
+    size,
+    buffer: buffer || Buffer.from([0xff, 0xd8, 0xff]), // JPEG header
+    destination: '',
+    filename: originalname,
+    path: '',
+    stream: new Readable(),
+  });
 
   it('should pass valid file', () => {
     const file = createMockFile('test.jpg', 'image/jpeg', 500 * 1024);
@@ -56,6 +56,8 @@ describe('FileValidationPipe', () => {
       1000,
       Buffer.from([0xff, 0xd8, 0xff]),
     );
-    expect(() => pipeWithMagic.transform(spoofedFile)).toThrow(BadRequestException);
+    expect(() => pipeWithMagic.transform(spoofedFile)).toThrow(
+      BadRequestException,
+    );
   });
 });

@@ -14,26 +14,35 @@ export const ROLES = {
 /**
  * Static catalog of permission names — mirrors the seed.
  * Import these in controllers via the `@RequirePermissions()` decorator.
+ *
+ * Reading travel content (provinces, foods, places, plans) is public and has no
+ * permission; only writes and the visitor inbox are guarded.
  */
 export const PERMISSIONS = {
   USERS_READ: 'users:read',
   USERS_WRITE: 'users:write',
   USERS_DELETE: 'users:delete',
   USERS_MANAGE_ROLES: 'users:manage-roles',
-  CATEGORIES_READ: 'categories:read',
-  CATEGORIES_WRITE: 'categories:write',
-  CATEGORIES_DELETE: 'categories:delete',
-  PRODUCTS_READ: 'products:read',
-  PRODUCTS_WRITE: 'products:write',
-  PRODUCTS_DELETE: 'products:delete',
-  VARIANTS_READ: 'variants:read',
-  VARIANTS_WRITE: 'variants:write',
-  VARIANTS_DELETE: 'variants:delete',
-  ORDERS_READ: 'orders:read',
-  ORDERS_WRITE: 'orders:write',
-  ORDERS_DELETE: 'orders:delete',
-  ORDERS_READ_OWN: 'orders:read-own',
-  ORDERS_WRITE_OWN: 'orders:write-own',
+  // Destinations: provinces and their "coming soon" teasers
+  PROVINCES_WRITE: 'provinces:write',
+  PROVINCES_DELETE: 'provinces:delete',
+  FOODS_WRITE: 'foods:write',
+  FOODS_DELETE: 'foods:delete',
+  PLACES_WRITE: 'places:write',
+  PLACES_DELETE: 'places:delete',
+  PLANS_WRITE: 'plans:write',
+  PLANS_DELETE: 'plans:delete',
+  // Contact form messages
+  MESSAGES_READ: 'messages:read',
+  MESSAGES_WRITE: 'messages:write',
+  MESSAGES_DELETE: 'messages:delete',
+  // Newsletter
+  SUBSCRIBERS_READ: 'subscribers:read',
+  SUBSCRIBERS_DELETE: 'subscribers:delete',
+  // Uploaded images/files
+  MEDIA_READ: 'media:read',
+  MEDIA_WRITE: 'media:write',
+  MEDIA_DELETE: 'media:delete',
 } as const;
 
 export type PermissionName = (typeof PERMISSIONS)[keyof typeof PERMISSIONS];

@@ -174,10 +174,7 @@ export class UsersService {
     const fullPath = getFullFilePath(user.profileImage);
     deleteFile(fullPath);
 
-    const updated = await this.usersRepository.updateProfileImage(
-      id,
-      null as any,
-    );
+    const updated = await this.usersRepository.updateProfileImage(id, null);
     return new UserEntity(updated);
   }
 

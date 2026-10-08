@@ -23,15 +23,15 @@
 
 ## Description
 
-Inventory Management API built with [Nest](https://github.com/nestjs/nest) framework.
+API for the **TvOrt** Cambodia travel guide (Next.js frontend `tv_ort_v2`), built with [Nest](https://github.com/nestjs/nest). Originally an inventory API; the JWT/RBAC auth was kept and the content tables were replaced.
 
 ## Features
 
 - 🔐 **JWT Authentication** - Secure login with access and refresh tokens
-- 👥 **Role-Based Access Control (RBAC)** - Admin, Manager, Staff roles with granular permissions
-- 📦 **Product Management** - Products with variants, categories, and pricing
-- 🛒 **Order Management** - Complete order processing system
-- 📸 **Image Upload** - User profile images and product image galleries
+- 👥 **Role-Based Access Control (RBAC)** - Admin, Support, Customer roles with granular permissions
+- 🗺️ **Travel content** - Provinces, foods, hidden places and budget plans, bilingual (English / Khmer)
+- 📬 **Visitor forms** - Newsletter signups and contact messages (public, rate limited)
+- 📸 **Image Upload** - User profile images and a media library
 - 📊 **PostgreSQL Database** - With Prisma ORM
 - 📝 **API Documentation** - Swagger/OpenAPI integration
 - ✅ **Input Validation** - Using class-validator
@@ -104,8 +104,17 @@ $ pnpm run test:cov
 - **[ROUTES.md](ROUTES.md)** - Complete API endpoints reference
 - **[pattern.md](pattern.md)** - Project architecture and coding patterns
 - **[db.md](db.md)** - Database schema documentation
+- **[frontend-spec.md](frontend-spec.md)** - How the TvOrt frontend maps onto these endpoints
 
 ## API Endpoints
+
+### Public (travel content)
+- `GET /api/provinces`, `GET /api/provinces/:slug`
+- `GET /api/upcoming-provinces`
+- `GET /api/foods`, `GET /api/foods/:slug`
+- `GET /api/hidden-places`, `GET /api/hidden-places/:slug`
+- `GET /api/budget-plans`, `GET /api/budget-plans/:slug`
+- `POST /api/newsletter/subscribe`, `POST /api/contact-messages`
 
 ### Authentication
 - `POST /api/auth/register` - Register new user
@@ -113,14 +122,10 @@ $ pnpm run test:cov
 - `POST /api/auth/refresh` - Refresh access token
 - `GET /api/auth/me` - Get current user
 
-### Users
-- `GET /api/users` - List users
-- `POST /api/users/:id/profile-image` - Upload profile image
-
-### Products
-- `GET /api/products` - List products
-- `POST /api/products/:id/images` - Upload product images
-- `GET /api/products/:id/images` - Get product gallery
+### Admin (permission-guarded)
+- `POST/PATCH/DELETE` on every content resource above
+- `GET /api/contact-messages`, `GET /api/newsletter/subscribers`
+- `GET /api/users`, `POST /api/media/upload`, ...
 
 See [ROUTES.md](ROUTES.md) for complete endpoint documentation.
 

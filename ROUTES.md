@@ -1,185 +1,127 @@
 # API Routes Documentation
 
-All routes are prefixed with `/api` (configured in `src/main.ts`)
+All routes are prefixed with `/api` (configured in `src/main.ts`). Interactive docs: http://localhost:8200/docs
 
-## 🔓 Public Routes (No Authentication Required)
+Responses are wrapped as `{ "success": true, "message": "Success", "data": ... }`; errors as `{ "success": false, "message": "..." }`.
+
+Lists return `data: { items, total, page, limit, totalPages }`. Content lists default to `limit=100` (max 100), so a client that omits `?limit=` gets the whole list.
+
+## 🔓 Public routes (no token)
+
+### Travel content (read)
+| Method | Endpoint | Query | Returns |
+|--------|----------|-------|---------|
+| GET | `/api/provinces` | `interest`, `page`, `limit` | Province cards |
+| GET | `/api/provinces/:slug` | | Full province page (`topPlaces`, `gettingThere`, `bestSeason`, `sampleBudget`, `planSlug`, …) |
+| GET | `/api/upcoming-provinces` | `interest` | "Coming soon" teasers |
+| GET | `/api/foods` | `province`, `type`, `page`, `limit` | Food cards |
+| GET | `/api/foods/:slug` | | Full food page + `provinces[]` + `related[]` (≤3) |
+| GET | `/api/hidden-places` | `province`, `category`, `page`, `limit` | Place cards (`image` = cover) |
+| GET | `/api/hidden-places/:slug` | | Full place page + `images[]` + `related[]` (≤3, same province) |
+| GET | `/api/budget-plans` | `province`, `page`, `limit` | Plan cards with `total` |
+| GET | `/api/budget-plans/:slug` | | Plan with `costs`, `categoryTotals`, `total`, `outline`, `tips` |
+
+`interest`: temples · beaches · nature · city · food · culture. `type`: dish · street · spot. `category`: nature · business · experience. `province` is a province slug.
+
+### Visitor forms (rate limited: 5 / minute / IP)
+| Method | Endpoint | Body |
+|--------|----------|------|
+| POST | `/api/newsletter/subscribe` | `{ email }` → `{ subscribed: true }` (idempotent) |
+| POST | `/api/contact-messages` | `{ name, email, message }` → `{ received: true }` |
 
 ### Authentication (`/api/auth`)
-| Method | Endpoint | Description | Controller |
-|--------|----------|-------------|------------|
-| POST | `/api/auth/register` | Register a new account | `auth.controller.ts` |
-| POST | `/api/auth/login` | Login and receive tokens | `auth.controller.ts` |
-| POST | `/api/auth/refresh` | Rotate a refresh token | `auth.controller.ts` |
-| POST | `/api/auth/logout` | Revoke a refresh token | `auth.controller.ts` |
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/api/auth/register` | Register (gets the Customer role) |
+| POST | `/api/auth/login` | Login → access + refresh token |
+| POST | `/api/auth/refresh` | Rotate a refresh token |
+| POST | `/api/auth/logout` | Revoke a refresh token |
 
 ---
 
-## 🔒 Protected Routes (Require Authentication)
+## 🔒 Protected routes
 
-**Authentication**: All routes below require Bearer token in header:
-```
-Authorization: Bearer <your_access_token>
-```
+Send `Authorization: Bearer <accessToken>`. Permissions are carried in the JWT; after changing a role's permissions, users must log in again (or refresh) to pick them up.
 
-### Authentication Profile (`/api/auth`)
-| Method | Endpoint | Description | Controller |
-|--------|----------|-------------|------------|
-| GET | `/api/auth/me` | Get authenticated user profile | `auth.controller.ts` |
+### Authentication profile
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/auth/me` | Authenticated user profile |
 
----
+### Travel content (write)
+| Method | Endpoint | Permission |
+|--------|----------|------------|
+| POST | `/api/provinces` | `provinces:write` |
+| PATCH | `/api/provinces/:slug` | `provinces:write` |
+| DELETE | `/api/provinces/:slug` | `provinces:delete` (409 while places/plans use it) |
+| POST / PATCH `:id` | `/api/upcoming-provinces` | `provinces:write` |
+| DELETE | `/api/upcoming-provinces/:id` | `provinces:delete` |
+| POST / PATCH `:slug` | `/api/foods` | `foods:write` |
+| DELETE | `/api/foods/:slug` | `foods:delete` |
+| POST / PATCH `:slug` | `/api/hidden-places` | `places:write` |
+| DELETE | `/api/hidden-places/:slug` | `places:delete` |
+| POST / PATCH `:slug` | `/api/budget-plans` | `plans:write` |
+| DELETE | `/api/budget-plans/:slug` | `plans:delete` |
 
-### Users (`/api/users`)
-| Method | Endpoint | Description | Required Permission | Controller |
-|--------|----------|-------------|---------------------|------------|
-| POST | `/api/users` | Create a user | `users:write` | `users.controller.ts` |
-| GET | `/api/users` | List all users (paginated) | `users:read` | `users.controller.ts` |
-| GET | `/api/users/:id` | Get user by ID | `users:read` | `users.controller.ts` |
-| PATCH | `/api/users/:id` | Update a user | `users:write` | `users.controller.ts` |
-| PATCH | `/api/users/:id/role` | Change a user's role | `users:manage-roles` | `users.controller.ts` |
-| DELETE | `/api/users/:id` | Delete a user | `users:delete` | `users.controller.ts` |
-| POST | `/api/users/:id/profile-image` | Upload profile image | `users:write` | `users.controller.ts` |
-| PATCH | `/api/users/:id/profile-image` | Update profile image | `users:write` | `users.controller.ts` |
-| DELETE | `/api/users/:id/profile-image` | Delete profile image | `users:write` | `users.controller.ts` |
+Write bodies mirror the read shapes (see Swagger). Relations are by slug (`"province": "kampot"`, `"provinces": ["kampot", "siem-reap"]`). On PATCH, any child collection you send replaces the whole collection.
 
----
+### Visitor inbox
+| Method | Endpoint | Permission |
+|--------|----------|------------|
+| GET | `/api/contact-messages` (`unread=true`) | `messages:read` |
+| PATCH | `/api/contact-messages/:id/read` | `messages:write` |
+| DELETE | `/api/contact-messages/:id` | `messages:delete` |
+| GET | `/api/newsletter/subscribers` | `subscribers:read` |
+| DELETE | `/api/newsletter/subscribers/:id` | `subscribers:delete` |
 
-### Roles (`/api/roles`)
-| Method | Endpoint | Description | Required Permission | Controller |
-|--------|----------|-------------|---------------------|------------|
-| GET | `/api/roles` | List all roles with their permissions | `users:manage-roles` | `roles.controller.ts` |
-| GET | `/api/roles/:id` | Get a role with its permissions | `users:manage-roles` | `roles.controller.ts` |
+### Media (image uploads)
+| Method | Endpoint | Permission |
+|--------|----------|------------|
+| POST | `/api/media/upload`, `/api/media/upload-multiple` | `media:write` |
+| GET | `/api/media`, `/api/media/:id` | `media:read` |
+| DELETE | `/api/media/:id` | `media:delete` |
 
----
+### Users and roles (unchanged)
+| Method | Endpoint | Permission |
+|--------|----------|------------|
+| POST | `/api/users` | `users:write` |
+| GET | `/api/users`, `/api/users/:id` | `users:read` |
+| PATCH | `/api/users/:id` | `users:write` |
+| PATCH | `/api/users/:id/role` | `users:manage-roles` |
+| DELETE | `/api/users/:id` | `users:delete` |
+| POST / PATCH / DELETE | `/api/users/:id/profile-image` | `users:write` |
+| GET | `/api/roles`, `/api/roles/:id` | `users:manage-roles` |
 
-### Categories (`/api/categories`)
-| Method | Endpoint | Description | Controller |
-|--------|----------|-------------|------------|
-| POST | `/api/categories` | Create a category | `categories.controller.ts` |
-| GET | `/api/categories` | List all categories (paginated) | `categories.controller.ts` |
-| GET | `/api/categories/:id` | Get category by ID | `categories.controller.ts` |
-| PATCH | `/api/categories/:id` | Update a category | `categories.controller.ts` |
-| DELETE | `/api/categories/:id` | Delete a category | `categories.controller.ts` |
+### Roles → permissions
 
----
-
-### Products (`/api/products`)
-| Method | Endpoint | Description | Required Permission | Controller |
-|--------|----------|-------------|---------------------|------------|
-| POST | `/api/products` | Create a product | `products:write` | `products.controller.ts` |
-| GET | `/api/products` | List all products (paginated) | `products:read` | `products.controller.ts` |
-| GET | `/api/products/:id` | Get product by ID | `products:read` | `products.controller.ts` |
-| PATCH | `/api/products/:id` | Update a product | `products:write` | `products.controller.ts` |
-| DELETE | `/api/products/:id` | Delete a product | `products:delete` | `products.controller.ts` |
-| POST | `/api/products/:id/images` | Upload product image | `products:write` | `products.controller.ts` |
-| GET | `/api/products/:id/images` | Get all product images | `products:read` | `products.controller.ts` |
-| GET | `/api/products/:id/images/:imageId` | Get single product image | `products:read` | `products.controller.ts` |
-| PATCH | `/api/products/:id/images/:imageId` | Update image metadata | `products:write` | `products.controller.ts` |
-| PATCH | `/api/products/:id/images/:imageId/primary` | Set image as primary | `products:write` | `products.controller.ts` |
-| DELETE | `/api/products/:id/images/:imageId` | Delete product image | `products:delete` | `products.controller.ts` |
+| Role | Permissions |
+|------|-------------|
+| Admin | all 20 |
+| Support | `users:read`, `users:write`, `provinces:write`, `foods:write`, `places:write`, `plans:write`, `messages:read`, `messages:write`, `subscribers:read`, `media:read`, `media:write` |
+| Customer | none |
 
 ---
 
-### Product Variants (`/api/product-variants`)
-| Method | Endpoint | Description | Controller |
-|--------|----------|-------------|------------|
-| POST | `/api/product-variants` | Create a product variant | `product-variants.controller.ts` |
-| GET | `/api/product-variants` | List all variants (paginated) | `product-variants.controller.ts` |
-| GET | `/api/product-variants/:id` | Get variant by ID | `product-variants.controller.ts` |
-| PATCH | `/api/product-variants/:id` | Update a variant | `product-variants.controller.ts` |
-| DELETE | `/api/product-variants/:id` | Delete a variant | `product-variants.controller.ts` |
+## 🧪 Testing routes
 
----
-
-### Orders (`/api/orders`)
-| Method | Endpoint | Description | Controller |
-|--------|----------|-------------|------------|
-| POST | `/api/orders` | Create an order | `orders.controller.ts` |
-| GET | `/api/orders` | List all orders (paginated) | `orders.controller.ts` |
-| GET | `/api/orders/:id` | Get order by ID | `orders.controller.ts` |
-| PATCH | `/api/orders/:id` | Update an order | `orders.controller.ts` |
-| DELETE | `/api/orders/:id` | Cancel an order | `orders.controller.ts` |
-
----
-
-## 📝 How Routes Work in NestJS (vs Laravel)
-
-### Laravel Way:
-```php
-// routes/api.php
-Route::post('/auth/login', [AuthController::class, 'login']);
-Route::get('/users', [UserController::class, 'index'])->middleware('auth');
-```
-
-### NestJS Way:
-```typescript
-// auth.controller.ts
-@Controller('auth')              // Defines /api/auth
-export class AuthController {
-  
-  @Post('login')                // Defines POST /api/auth/login
-  login(@Body() dto: LoginDto) {
-    return this.authService.login(dto);
-  }
-}
-```
-
-**Key Differences:**
-- Laravel: Routes defined in **one file** (`routes/api.php`)
-- NestJS: Routes defined with **decorators** in each controller file
-- Global prefix (`/api`) set in `main.ts` with `app.setGlobalPrefix('api')`
-- `@Controller('users')` = route prefix (like Laravel's route groups)
-- `@Post()`, `@Get()`, `@Patch()`, `@Delete()` = HTTP methods
-- `@UseGuards(JwtAuthGuard)` = middleware (like Laravel's `->middleware('auth')`)
-- `@Public()` decorator = skip authentication (like Laravel's public routes)
-
----
-
-## 🔍 Viewing All Routes
-
-### Option 1: Swagger Documentation (Recommended)
-1. Start the server: `npm run start:dev`
-2. Visit: http://localhost:8200/docs
-3. Interactive API documentation with all endpoints
-
-### Option 2: Using NestJS CLI
 ```bash
-# If you want a command-line route list (requires setup)
-npm i -D @nestjs/cli
-```
+# Public read
+curl http://localhost:8200/api/provinces
+curl "http://localhost:8200/api/foods?province=kampot&type=street"
 
-### Option 3: This File
-Keep this `ROUTES.md` updated as you add new endpoints!
-
----
-
-## 🧪 Testing Routes
-
-### Using curl:
-```bash
-# Login
+# Login, then write
 curl -X POST http://localhost:8200/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"email":"test@example.com","password":"password123"}'
+  -d '{"email":"admin@example.com","password":"password123"}'
 
-# Get users (with token)
-curl -X GET http://localhost:8200/api/users \
-  -H "Authorization: Bearer YOUR_ACCESS_TOKEN"
+curl -X PATCH http://localhost:8200/api/foods/lok-lak \
+  -H "Authorization: Bearer YOUR_ACCESS_TOKEN" -H "Content-Type: application/json" \
+  -d '{"price":{"min":3,"max":8,"unit":{"en":"per plate"}}}'
 ```
 
-### Using Postman/Insomnia:
-Import the Swagger JSON from: http://localhost:8200/docs-json
+Swagger JSON for Postman/Insomnia: http://localhost:8200/docs-json
 
----
+## 📂 Finding routes in code
 
-## 📂 Finding Routes in Code
-
-To find where a route is defined:
-
-1. Look at `src/app.module.ts` - see all imported modules
-2. Check each module's controller file:
-   - `src/auth/auth.controller.ts`
-   - `src/users/users.controller.ts`
-   - `src/products/products.controller.ts`
-   - etc.
-
-Every `@Controller('path')` + `@Post('action')` combination creates a route!
+Every `@Controller('path')` + `@Get()/@Post()/…` combination is a route. Start at `src/app.module.ts` for the module list, then each module's controller:
+`provinces`, `upcoming-provinces`, `foods`, `hidden-places`, `budget-plans`, `newsletter`, `contact-messages`, `media`, `users`, `roles`, `auth`.

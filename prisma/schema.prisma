@@ -15,17 +15,34 @@ enum UserStatus {
   INACTIVE
 }
 
-enum ProductStatus {
-  ACTIVE
-  INACTIVE
+// The enums below are lowercase on purpose: their values are the same keys the
+// TvOrt frontend uses for its type unions and label lookups (e.g. t.interests["temples"]).
+enum Interest {
+  temples
+  beaches
+  nature
+  city
+  food
+  culture
 }
 
-enum OrderStatus {
-  PENDING
-  PAID
-  SHIPPED
-  COMPLETED
-  CANCELLED
+enum FoodType {
+  dish
+  street
+  spot
+}
+
+enum PlaceCategory {
+  nature
+  business
+  experience
+}
+
+enum CostCategory {
+  transport
+  stay
+  food
+  activities
 }
 
 model User {
@@ -37,7 +54,6 @@ model User {
   status       UserStatus @default(ACTIVE)
   roleId       Int?
   role         Role?      @relation(fields: [roleId], references: [id])
-  orders       Order[]
   media        Media[]
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
@@ -81,85 +97,6 @@ model RolePermission {
   @@map("role_permissions")
 }
 
-model Category {
-  id          String    @id @default(uuid())
-  name        String    @unique
-  description String?
-  products    Product[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-
-  @@map("categories")
-}
-
-model Product {
-  id          String           @id @default(uuid())
-  categoryId  String
-  category    Category         @relation(fields: [categoryId], references: [id])
-  name        String
-  description String?
-  image       String?
-  status      ProductStatus    @default(ACTIVE)
-  variants    ProductVariant[]
-  images      ProductImage[]
-  createdAt   DateTime         @default(now())
-  updatedAt   DateTime         @updatedAt
-
-  @@index([categoryId])
-  @@map("products")
-}
-
-model ProductVariant {
-  id         String      @id @default(uuid())
-  productId  String
-  product    Product     @relation(fields: [productId], references: [id])
-  sku        String      @unique
-  barcode    String?     @unique
-  color      String?
-  size       String?
-  price      Decimal     @db.Decimal(12, 2)
-  cost       Decimal     @db.Decimal(12, 2)
-  quantity   Int         @default(0)
-  orderItems OrderItem[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-
-  @@index([productId])
-  @@map("product_variants")
-}
-
-model Order {
-  id          String      @id @default(uuid())
-  userId      Int
-  user        User        @relation(fields: [userId], references: [id])
-  orderNumber String      @unique
-  total       Decimal     @db.Decimal(12, 2)
-  status      OrderStatus @default(PENDING)
-  items       OrderItem[]
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-
-  @@index([userId])
-  @@map("orders")
-}
-
-model OrderItem {
-  id               String         @id @default(uuid())
-  orderId          String
-  order            Order          @relation(fields: [orderId], references: [id])
-  productVariantId String
-  productVariant   ProductVariant @relation(fields: [productVariantId], references: [id])
-  quantity         Int
-  price            Decimal        @db.Decimal(12, 2)
-  subtotal         Decimal        @db.Decimal(12, 2)
-  createdAt        DateTime       @default(now())
-  updatedAt        DateTime       @updatedAt
-
-  @@index([orderId])
-  @@index([productVariantId])
-  @@map("order_items")
-}
-
 model RefreshToken {
   id        String    @id @default(uuid())
   userId    Int
@@ -170,21 +107,6 @@ model RefreshToken {
 
   @@index([userId])
   @@map("refresh_tokens")
-}
-
-model ProductImage {
-  id        String   @id @default(uuid())
-  productId String
-  product   Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
-  imageUrl  String
-  altText   String?
-  order     Int      @default(0)
-  isPrimary Boolean  @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@index([productId])
-  @@map("product_images")
 }
 
 model Media {
@@ -204,4 +126,210 @@ model Media {
 
   @@index([uploaderId])
   @@map("media")
+}
+
+// ─── Travel content ──────────────────────────────────────────────────────────
+// Every `Json` column marked "localized" holds `{ "en": string, "kh"?: string }`,
+// the same shape as the frontend's `Text` type, so `tx(value, locale)` works unchanged.
+// Public URLs use `slug`; `sortOrder` is the display order (lower first).
+
+model Province {
+  id               String              @id @default(uuid())
+  slug             String              @unique
+  name             Json // localized
+  tagline          Json // localized
+  image            String
+  interests        Interest[]
+  whyGo            Json // localized
+  bestSeasonMonths Json // localized
+  bestSeasonDetail Json // localized
+  goodToKnow       Json? // localized
+  // Sample budget, USD per person per day
+  budgetStay       Decimal             @db.Decimal(10, 2)
+  budgetFood       Decimal             @db.Decimal(10, 2)
+  budgetTransport  Decimal             @db.Decimal(10, 2)
+  budgetActivities Decimal             @db.Decimal(10, 2)
+  budgetNote       Json // localized
+  sortOrder        Int                 @default(0)
+  topPlaces        ProvinceTopPlace[]
+  gettingThere     ProvinceTransport[]
+  foods            Food[]
+  hiddenPlaces     HiddenPlace[]
+  plans            BudgetPlan[]
+  createdAt        DateTime            @default(now())
+  updatedAt        DateTime            @updatedAt
+
+  @@map("provinces")
+}
+
+model ProvinceTopPlace {
+  id          String   @id @default(uuid())
+  provinceId  String
+  province    Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+  name        Json // localized
+  description Json // localized
+  image       String
+  sortOrder   Int      @default(0)
+
+  @@index([provinceId])
+  @@map("province_top_places")
+}
+
+model ProvinceTransport {
+  id         String   @id @default(uuid())
+  provinceId String
+  province   Province @relation(fields: [provinceId], references: [id], onDelete: Cascade)
+  mode       Json // localized
+  detail     Json // localized
+  sortOrder  Int      @default(0)
+
+  @@index([provinceId])
+  @@map("province_transports")
+}
+
+/// "Coming soon" teasers shown under the destinations list. Promote one by
+/// creating a Province and deleting the teaser.
+model UpcomingProvince {
+  id        String     @id @default(uuid())
+  name      Json // localized
+  image     String
+  interests Interest[]
+  sortOrder Int        @default(0)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("upcoming_provinces")
+}
+
+model Food {
+  id            String      @id @default(uuid())
+  slug          String      @unique
+  name          Json // localized
+  khmerName     String
+  pronunciation String
+  type          FoodType
+  image         String
+  summary       Json // localized
+  whatItIs      Json // localized
+  priceMin      Decimal     @db.Decimal(10, 2)
+  priceMax      Decimal     @db.Decimal(10, 2)
+  priceUnit     Json // localized, e.g. "per plate"
+  sortOrder     Int         @default(0)
+  provinces     Province[]
+  venues        FoodVenue[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  @@index([type])
+  @@map("foods")
+}
+
+/// "Where to try it" entries on a food's page.
+model FoodVenue {
+  id        String @id @default(uuid())
+  foodId    String
+  food      Food   @relation(fields: [foodId], references: [id], onDelete: Cascade)
+  name      Json // localized
+  detail    Json // localized
+  sortOrder Int    @default(0)
+
+  @@index([foodId])
+  @@map("food_venues")
+}
+
+model HiddenPlace {
+  id         String        @id @default(uuid())
+  slug       String        @unique
+  name       Json // localized
+  khmerName  String?
+  provinceId String
+  province   Province      @relation(fields: [provinceId], references: [id])
+  category   PlaceCategory
+  /// Ordered; the first image is the cover.
+  images     String[]
+  summary    Json // localized
+  special    Json // localized
+  howToReach Json // localized
+  costMin    Decimal       @db.Decimal(10, 2)
+  costMax    Decimal       @db.Decimal(10, 2)
+  costNote   Json // localized
+  bestTime   Json // localized
+  sortOrder  Int           @default(0)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+
+  @@index([provinceId])
+  @@index([category])
+  @@map("hidden_places")
+}
+
+model BudgetPlan {
+  id         String           @id @default(uuid())
+  slug       String           @unique
+  title      Json // localized
+  provinceId String
+  province   Province         @relation(fields: [provinceId], references: [id])
+  image      String
+  days       Int
+  people     Int
+  summary    Json // localized
+  /// Array of localized strings.
+  tips       Json
+  sortOrder  Int              @default(0)
+  costs      BudgetPlanCost[]
+  outline    BudgetPlanDay[]
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+
+  @@index([provinceId])
+  @@map("budget_plans")
+}
+
+model BudgetPlanCost {
+  id        String       @id @default(uuid())
+  planId    String
+  plan      BudgetPlan   @relation(fields: [planId], references: [id], onDelete: Cascade)
+  category  CostCategory
+  label     Json // localized
+  amount    Decimal      @db.Decimal(10, 2)
+  sortOrder Int          @default(0)
+
+  @@index([planId])
+  @@map("budget_plan_costs")
+}
+
+/// One day of a plan's itinerary. Day number = position by sortOrder.
+model BudgetPlanDay {
+  id        String     @id @default(uuid())
+  planId    String
+  plan      BudgetPlan @relation(fields: [planId], references: [id], onDelete: Cascade)
+  title     Json // localized
+  /// Array of localized strings.
+  items     Json
+  sortOrder Int        @default(0)
+
+  @@index([planId])
+  @@map("budget_plan_days")
+}
+
+// ─── Visitor submissions (written by the public site, read by staff) ─────────
+
+model NewsletterSubscriber {
+  id        String   @id @default(uuid())
+  email     String   @unique // stored lowercase
+  createdAt DateTime @default(now())
+
+  @@map("newsletter_subscribers")
+}
+
+model ContactMessage {
+  id        String    @id @default(uuid())
+  name      String
+  email     String
+  message   String
+  readAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([createdAt])
+  @@map("contact_messages")
 }

@@ -4,11 +4,11 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { UserStatus } from '../common/enums/user-status.enum';
+import { UserStatus } from '@prisma/client';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { createHash } from 'crypto';
+import { createHash, randomUUID } from 'crypto';
 import { JwtPayload } from '../common/interfaces/jwt-payload.interface';
 import { UserEntity } from '../users/entities/user.entity';
 import { UserWithPermissions } from '../users/users.repository';
@@ -126,7 +126,11 @@ export class AuthService {
   }
 
   private async issueTokens(payload: JwtPayload): Promise<AuthTokens> {
+    // A unique `jti` keeps every token distinct. Without it, two tokens issued
+    // to the same user in the same second are identical, so the unique
+    // `refresh_tokens.tokenHash` rejects the second one (a 500 on login/refresh).
     const accessToken = this.jwtService.sign(payload, {
+      jwtid: randomUUID(),
       secret: this.config.get<string>('jwt.accessSecret'),
       expiresIn: this.config.get<string>(
         'jwt.accessExpiresIn',
@@ -135,6 +139,7 @@ export class AuthService {
     });
 
     const refreshToken = this.jwtService.sign(payload, {
+      jwtid: randomUUID(),
       secret: this.config.get<string>('jwt.refreshSecret'),
       expiresIn: this.config.get<string>(
         'jwt.refreshExpiresIn',

@@ -1,0 +1,2198 @@
+{
+  "provinces": [
+    {
+      "slug": "phnom-penh",
+      "name": {
+        "en": "Phnom Penh",
+        "kh": "ភ្នំពេញ"
+      },
+      "tagline": {
+        "en": "The capital, where the Mekong meets the Tonlé Sap.",
+        "kh": "រាជធានី ដែលទន្លេមេគង្គជួបទន្លេសាប។"
+      },
+      "image": "photo-1663075039775-c4c05356b8fe",
+      "interests": [
+        "city",
+        "culture",
+        "food"
+      ],
+      "whyGo": {
+        "en": "Phnom Penh is where Cambodia's history, food and nightlife come together. Spend the morning at the Royal Palace, eat your way through a market at lunch, and watch the river at sunset from Sisowath Quay. It's also the easiest base: buses and minivans leave from here for every province on TvOrt.",
+        "kh": "ភ្នំពេញ គឺជាកន្លែងដែលប្រវត្តិសាស្ត្រ ម្ហូប និងជីវិតពេលយប់របស់កម្ពុជាជួបគ្នា។ ពេលព្រឹកទស្សនាព្រះបរមរាជវាំង ថ្ងៃត្រង់ញ៉ាំនៅផ្សារ ហើយពេលល្ងាចមើលថ្ងៃលិចនៅមាត់ទន្លេស៊ីសុវត្ថិ។ ក៏ជាទីតាំងចាប់ផ្តើមដ៏ងាយស្រួល ព្រោះឡានក្រុងចេញពីទីនេះទៅគ្រប់ខេត្ត។"
+      },
+      "topPlaces": [
+        {
+          "name": {
+            "en": "Royal Palace & Silver Pagoda",
+            "kh": "ព្រះបរមរាជវាំង និងវត្តព្រះកែវមរកត"
+          },
+          "description": {
+            "en": "The King's official residence, with gold-roofed throne halls and a pagoda floored in silver tiles. Cover your shoulders and knees."
+          },
+          "image": "photo-1672858818108-f698cd979ce8"
+        },
+        {
+          "name": {
+            "en": "National Museum",
+            "kh": "សារមន្ទីរជាតិ"
+          },
+          "description": {
+            "en": "A terracotta-red pavilion holding the world's finest collection of Khmer sculpture, from pre-Angkor to today."
+          },
+          "image": "photo-1706583733600-08e942012484"
+        },
+        {
+          "name": {
+            "en": "Independence Monument",
+            "kh": "វិមានឯករាជ្យ"
+          },
+          "description": {
+            "en": "A lotus-shaped tower built in 1958 to mark independence from France. Beautifully lit at night."
+          },
+          "image": "photo-1540578453513-d029cbe11a00"
+        },
+        {
+          "name": {
+            "en": "Sisowath Quay",
+            "kh": "មាត់ទន្លេស៊ីសុវត្ថិ"
+          },
+          "description": {
+            "en": "The riverside promenade. Come at dusk for street snacks, group aerobics and sunset river cruises."
+          },
+          "image": "photo-1706670663016-777de9e62d17"
+        }
+      ],
+      "gettingThere": [
+        {
+          "mode": {
+            "en": "By air",
+            "kh": "តាមយន្តហោះ"
+          },
+          "detail": {
+            "en": "Techo International Airport (KTI) opened in 2025, south of the city. Allow 45–60 minutes by taxi, or book a ride on Grab or PassApp."
+          }
+        },
+        {
+          "mode": {
+            "en": "By bus",
+            "kh": "តាមឡានក្រុង"
+          },
+          "detail": {
+            "en": "Direct buses and minivans from Siem Reap (6 h), Kampot (3 h), Sihanoukville (3–4 h) and Koh Kong (5–6 h)."
+          }
+        },
+        {
+          "mode": {
+            "en": "Getting around",
+            "kh": "ធ្វើដំណើរក្នុងក្រុង"
+          },
+          "detail": {
+            "en": "Tuk-tuks and rickshaws via PassApp or Grab. Most rides across town cost $1.50–4."
+          }
+        }
+      ],
+      "bestSeason": {
+        "months": {
+          "en": "November – February",
+          "kh": "វិច្ឆិកា – កុម្ភៈ"
+        },
+        "detail": {
+          "en": "Dry and relatively cool. The Water Festival (usually November) fills the riverside with boat races."
+        }
+      },
+      "sampleBudget": {
+        "stay": 10,
+        "food": 8,
+        "transport": 4,
+        "activities": 8,
+        "note": {
+          "en": "Guesthouse or hostel, local food, app tuk-tuks and one paid sight a day."
+        }
+      },
+      "sortOrder": 0
+    },
+    {
+      "slug": "siem-reap",
+      "name": {
+        "en": "Siem Reap",
+        "kh": "សៀមរាប"
+      },
+      "tagline": {
+        "en": "Home of Angkor, and a whole lot more.",
+        "kh": "ទឹកដីអង្គរ និងច្រើនទៀត។"
+      },
+      "image": "photo-1606231140504-b6ec6cbbbf6b",
+      "interests": [
+        "temples",
+        "culture",
+        "food"
+      ],
+      "whyGo": {
+        "en": "Siem Reap is the gateway to Angkor, the largest religious monument on Earth. Most people rush Angkor Wat at sunrise and leave. Stay longer: cycle to quiet temples, take a boat to the villages on the Tonlé Sap, and spend your evenings in a town that's genuinely fun.",
+        "kh": "សៀមរាប គឺជាច្រកចូលទៅកាន់អង្គរ។ មនុស្សភាគច្រើនមកមើលថ្ងៃរះនៅអង្គរវត្ត ហើយចាកចេញភ្លាម។ សូមស្នាក់នៅយូរបន្តិច៖ ជិះកង់ទៅប្រាសាទស្ងាត់ៗ ជិះទូកទៅភូមិនៅបឹងទន្លេសាប ហើយពេលល្ងាចដើរលេងក្នុងក្រុងដែលសប្បាយពិតៗ។"
+      },
+      "topPlaces": [
+        {
+          "name": {
+            "en": "Angkor Wat",
+            "kh": "អង្គរវត្ត"
+          },
+          "description": {
+            "en": "Built in the early 12th century and still the symbol on the national flag. Come at sunrise, or at midday when the crowds leave for lunch."
+          },
+          "image": "photo-1606231140504-b6ec6cbbbf6b"
+        },
+        {
+          "name": {
+            "en": "Bayon",
+            "kh": "ប្រាសាទបាយ័ន"
+          },
+          "description": {
+            "en": "More than 200 giant stone faces gaze out from the towers of this temple at the heart of Angkor Thom."
+          },
+          "image": "photo-1650347648000-b9a0581a147f"
+        },
+        {
+          "name": {
+            "en": "Ta Prohm",
+            "kh": "ប្រាសាទតាព្រហ្ម"
+          },
+          "description": {
+            "en": "Silk-cotton and strangler fig trees growing right through the walls, left much as it was found."
+          },
+          "image": "photo-1526324585411-e24d5ba61edd"
+        },
+        {
+          "name": {
+            "en": "Pub Street & night markets",
+            "kh": "ផ្លូវ Pub Street និងផ្សាររាត្រី"
+          },
+          "description": {
+            "en": "Street food, bars and markets. Busy, friendly and cheap."
+          },
+          "image": "photo-1568715281772-74fa7a5e6e72"
+        }
+      ],
+      "gettingThere": [
+        {
+          "mode": {
+            "en": "By air",
+            "kh": "តាមយន្តហោះ"
+          },
+          "detail": {
+            "en": "Siem Reap–Angkor International Airport (SAI) is about an hour from town by shuttle bus or taxi."
+          }
+        },
+        {
+          "mode": {
+            "en": "By bus",
+            "kh": "តាមឡានក្រុង"
+          },
+          "detail": {
+            "en": "About 6 hours from Phnom Penh on a day or night bus ($10–15)."
+          }
+        },
+        {
+          "mode": {
+            "en": "Getting around",
+            "kh": "ធ្វើដំណើរក្នុងក្រុង"
+          },
+          "detail": {
+            "en": "Rent a bicycle ($2–3 a day) or e-bike, or hire a tuk-tuk for a temple day ($15–25)."
+          }
+        }
+      ],
+      "bestSeason": {
+        "months": {
+          "en": "November – February",
+          "kh": "វិច្ឆិកា – កុម្ភៈ"
+        },
+        "detail": {
+          "en": "Cool, dry mornings for temple hopping. July to October is green season: fewer crowds and full moats, with afternoon rain."
+        }
+      },
+      "goodToKnow": {
+        "en": "Angkor passes for foreign visitors cost $37 (1 day), $62 (3 days) or $72 (1 week). Cambodian citizens enter free."
+      },
+      "sampleBudget": {
+        "stay": 12,
+        "food": 9,
+        "transport": 7,
+        "activities": 13,
+        "note": {
+          "en": "Guesthouse, local food, a bicycle or shared tuk-tuk, and a 3-day Angkor pass spread over the trip."
+        }
+      },
+      "sortOrder": 1
+    },
+    {
+      "slug": "kampot",
+      "name": {
+        "en": "Kampot",
+        "kh": "កំពត"
+      },
+      "tagline": {
+        "en": "Slow river days, pepper farms and mountain views.",
+        "kh": "ទន្លេស្ងប់ស្ងាត់ ចម្ការម្រេច និងទេសភាពភ្នំ។"
+      },
+      "image": "photo-1720720583618-ddf8f581a893",
+      "interests": [
+        "nature",
+        "food",
+        "culture"
+      ],
+      "whyGo": {
+        "en": "Kampot is where Cambodians and travellers go to slow down. Old shophouses line a wide river, Bokor Mountain rises behind town, and the famous Kampot pepper grows on farms a short scooter ride away. Kep, the seaside crab town, is just 25 km down the road.",
+        "kh": "កំពត គឺជាកន្លែងដែលអ្នកស្រុក និងភ្ញៀវទេសចរមកសម្រាក។ ផ្ទះល្វែងចាស់ៗតម្រៀបតាមមាត់ទន្លេ ភ្នំបូកគោនៅខាងក្រោយក្រុង ហើយម្រេចកំពតដ៏ល្បីដុះនៅចម្ការមិនឆ្ងាយ។ ក្រុងកែប ដែលល្បីខាងក្តាម នៅចម្ងាយត្រឹមតែ ២៥ គីឡូម៉ែត្រ។"
+      },
+      "topPlaces": [
+        {
+          "name": {
+            "en": "Kampot River",
+            "kh": "ទន្លេកំពត"
+          },
+          "description": {
+            "en": "Kayak upstream or take a sunset boat. After dark, fireflies light up the riverbanks."
+          },
+          "image": "photo-1720720583618-ddf8f581a893"
+        },
+        {
+          "name": {
+            "en": "Bokor National Park",
+            "kh": "ឧទ្យានជាតិបូកគោ"
+          },
+          "description": {
+            "en": "A winding road up to about 1,000 m: cool air, an old French hill station and views out to sea."
+          },
+          "image": "photo-1720720581899-20e816236cb8"
+        },
+        {
+          "name": {
+            "en": "Old town & Durian Roundabout",
+            "kh": "ក្រុងចាស់ និងរង្វង់មូលធូរេន"
+          },
+          "description": {
+            "en": "Kampot's famous (slightly silly) giant durian, surrounded by colonial-era streets full of cafés."
+          },
+          "image": "photo-1786954431665-e08a70f53872"
+        },
+        {
+          "name": {
+            "en": "Kep",
+            "kh": "កែប"
+          },
+          "description": {
+            "en": "A sleepy seaside town known for its crab market and sunsets, 30 minutes away."
+          },
+          "image": "photo-1632163803231-123e953601b0"
+        }
+      ],
+      "gettingThere": [
+        {
+          "mode": {
+            "en": "By bus",
+            "kh": "តាមឡានក្រុង"
+          },
+          "detail": {
+            "en": "About 3 hours from Phnom Penh ($7–12). Minivans also connect to Kep (30 min) and Sihanoukville (2 h)."
+          }
+        },
+        {
+          "mode": {
+            "en": "By train",
+            "kh": "តាមរថភ្លើង"
+          },
+          "detail": {
+            "en": "Royal Railway runs Phnom Penh–Kampot trains on some days of the week. Slower, but scenic. Check the current timetable."
+          }
+        },
+        {
+          "mode": {
+            "en": "Getting around",
+            "kh": "ធ្វើដំណើរក្នុងក្រុង"
+          },
+          "detail": {
+            "en": "Scooters rent for $5–8 a day; tuk-tuks for longer trips."
+          }
+        }
+      ],
+      "bestSeason": {
+        "months": {
+          "en": "November – April",
+          "kh": "វិច្ឆិកា – មេសា"
+        },
+        "detail": {
+          "en": "Dry and sunny. Bokor can be foggy and cool all year, so bring a layer."
+        }
+      },
+      "goodToKnow": {
+        "en": "Kampot pepper has Protected Geographical Indication status. Buy it at the farm and it's fresher and cheaper."
+      },
+      "sampleBudget": {
+        "stay": 8,
+        "food": 7,
+        "transport": 5,
+        "activities": 3,
+        "note": {
+          "en": "Riverside guesthouse, market food, a shared scooter and mostly free activities."
+        }
+      },
+      "sortOrder": 2
+    },
+    {
+      "slug": "preah-sihanouk",
+      "name": {
+        "en": "Preah Sihanouk",
+        "kh": "ព្រះសីហនុ"
+      },
+      "tagline": {
+        "en": "Island hopping on the Gulf of Thailand.",
+        "kh": "ដើរលេងកោះ លើឈូងសមុទ្រថៃ។"
+      },
+      "image": "photo-1651510689604-4d2d85daa479",
+      "interests": [
+        "beaches",
+        "nature"
+      ],
+      "whyGo": {
+        "en": "Sihanoukville city is mostly a jumping-off point now. The real reason to come is the islands: Koh Rong and Koh Rong Samloem have white sand, clear water and glowing plankton on moonless nights. Stay in a bungalow, switch off, and hop between beaches by boat.",
+        "kh": "ក្រុងព្រះសីហនុ ភាគច្រើនជាចំណុចចេញដំណើរ។ មូលហេតុពិតប្រាកដគឺកោះ៖ កោះរ៉ុង និងកោះរ៉ុងសន្លឹម មានខ្សាច់ស ទឹកថ្លា និងប្លង់តុងភ្លឺនៅយប់ងងឹត។ ស្នាក់នៅបឹងហ្គាឡូ សម្រាក ហើយជិះទូកពីឆ្នេរមួយទៅឆ្នេរមួយ។"
+      },
+      "topPlaces": [
+        {
+          "name": {
+            "en": "Koh Rong",
+            "kh": "កោះរ៉ុង"
+          },
+          "description": {
+            "en": "The bigger, livelier island. Long Set and Sok San beaches are the quieter sides."
+          },
+          "image": "photo-1651510689604-4d2d85daa479"
+        },
+        {
+          "name": {
+            "en": "Koh Rong Samloem",
+            "kh": "កោះរ៉ុងសន្លឹម"
+          },
+          "description": {
+            "en": "Smaller and calmer, with the long white curve of Saracen Bay."
+          },
+          "image": "photo-1595781723824-9213a40e3257"
+        },
+        {
+          "name": {
+            "en": "Otres Beach",
+            "kh": "ឆ្នេរអូរត្រេះ"
+          },
+          "description": {
+            "en": "The mainland's most relaxed stretch of sand, south of the city."
+          },
+          "image": "photo-1611743096393-ff83113d8003"
+        },
+        {
+          "name": {
+            "en": "Ream National Park",
+            "kh": "ឧទ្យានជាតិរាម"
+          },
+          "description": {
+            "en": "Mangroves, fishing villages and quiet beaches near the airport."
+          },
+          "image": "photo-1674017312257-67bb643c7aaf"
+        }
+      ],
+      "gettingThere": [
+        {
+          "mode": {
+            "en": "By bus",
+            "kh": "តាមឡានក្រុង"
+          },
+          "detail": {
+            "en": "3–4 hours from Phnom Penh on the expressway ($10–14), or 2 hours from Kampot."
+          }
+        },
+        {
+          "mode": {
+            "en": "By boat",
+            "kh": "តាមទូក"
+          },
+          "detail": {
+            "en": "Speedboats to Koh Rong and Koh Rong Samloem take 45–90 minutes ($10–25 each way) from the Serendipity pier."
+          }
+        },
+        {
+          "mode": {
+            "en": "By air",
+            "kh": "តាមយន្តហោះ"
+          },
+          "detail": {
+            "en": "Sihanouk International Airport (KOS) is about 18 km from the city."
+          }
+        }
+      ],
+      "bestSeason": {
+        "months": {
+          "en": "November – April",
+          "kh": "វិច្ឆិកា – មេសា"
+        },
+        "detail": {
+          "en": "Calm, clear seas. From June to October, storms can cancel boats, so check the forecast."
+        }
+      },
+      "sampleBudget": {
+        "stay": 14,
+        "food": 12,
+        "transport": 8,
+        "activities": 6,
+        "note": {
+          "en": "Beach bungalow, simple island food, boat transfers spread over the stay."
+        }
+      },
+      "sortOrder": 3
+    },
+    {
+      "slug": "koh-kong",
+      "name": {
+        "en": "Koh Kong",
+        "kh": "កោះកុង"
+      },
+      "tagline": {
+        "en": "Rainforest, waterfalls and mangroves on the wild coast.",
+        "kh": "ព្រៃត្រូពិច ទឹកធ្លាក់ និងព្រៃកោងកាង។"
+      },
+      "image": "photo-1732029132689-248e63587958",
+      "interests": [
+        "nature",
+        "beaches"
+      ],
+      "whyGo": {
+        "en": "Koh Kong is Cambodia's wild side. The Cardamom Mountains hold one of the largest rainforests left in mainland Southeast Asia, and community projects like Chi Phat let you trek, kayak and stay with local families. Closer to town there are mangrove boardwalks, empty islands and the thundering Tatai waterfall.",
+        "kh": "កោះកុង គឺជាផ្នែកព្រៃធម្មជាតិរបស់កម្ពុជា។ ជួរភ្នំក្រវាញមានព្រៃត្រូពិចធំបំផុតមួយដែលនៅសល់ក្នុងតំបន់អាស៊ីអាគ្នេយ៍ ហើយគម្រោងសហគមន៍ដូចជាជីផាត់ អនុញ្ញាតឲ្យអ្នកដើរព្រៃ អុំទូក និងស្នាក់នៅជាមួយគ្រួសារក្នុងស្រុក។"
+      },
+      "topPlaces": [
+        {
+          "name": {
+            "en": "Cardamom Mountains",
+            "kh": "ជួរភ្នំក្រវាញ"
+          },
+          "description": {
+            "en": "Trek, kayak and look for hornbills from community-run camps."
+          },
+          "image": "photo-1602604193553-28c132dac0a7"
+        },
+        {
+          "name": {
+            "en": "Tatai River",
+            "kh": "ស្ទឹងតាតៃ"
+          },
+          "description": {
+            "en": "Floating lodges, quiet river bends and a powerful waterfall upstream."
+          },
+          "image": "photo-1740636575415-2847ea286b2a"
+        },
+        {
+          "name": {
+            "en": "Peam Krasop mangroves",
+            "kh": "ព្រៃកោងកាងពាមក្រសោប"
+          },
+          "description": {
+            "en": "A long boardwalk through a huge mangrove forest, with fishing boats along the channels."
+          },
+          "image": "photo-1612073546130-fad624c32575"
+        },
+        {
+          "name": {
+            "en": "Koh Kong Krao",
+            "kh": "កោះកុងក្រៅ"
+          },
+          "description": {
+            "en": "Cambodia's largest island, with long, almost empty beaches. Reached by boat."
+          },
+          "image": "photo-1707111642741-7b89c943f9c3"
+        }
+      ],
+      "gettingThere": [
+        {
+          "mode": {
+            "en": "By bus",
+            "kh": "តាមឡានក្រុង"
+          },
+          "detail": {
+            "en": "5–6 hours from Phnom Penh ($10–12), or about 4 hours from Sihanoukville."
+          }
+        },
+        {
+          "mode": {
+            "en": "From Thailand",
+            "kh": "ពីប្រទេសថៃ"
+          },
+          "detail": {
+            "en": "The Cham Yeam border crossing is about 10 km from Koh Kong town."
+          }
+        },
+        {
+          "mode": {
+            "en": "Getting around",
+            "kh": "ធ្វើដំណើរក្នុងក្រុង"
+          },
+          "detail": {
+            "en": "Rent a scooter in town. Tatai and the mangroves are an easy ride."
+          }
+        }
+      ],
+      "bestSeason": {
+        "months": {
+          "en": "November – April",
+          "kh": "វិច្ឆិកា – មេសា"
+        },
+        "detail": {
+          "en": "Koh Kong gets some of Cambodia's heaviest rain from June to October. Waterfalls are at their best just after, in November and December."
+        }
+      },
+      "sampleBudget": {
+        "stay": 10,
+        "food": 7,
+        "transport": 7,
+        "activities": 5,
+        "note": {
+          "en": "Guesthouse in town, local food, a scooter and small entry fees."
+        }
+      },
+      "sortOrder": 4
+    }
+  ],
+  "upcomingProvinces": [
+    {
+      "name": {
+        "en": "Kep",
+        "kh": "កែប"
+      },
+      "image": "photo-1632163803231-123e953601b0",
+      "interests": [
+        "beaches",
+        "food"
+      ],
+      "sortOrder": 0
+    },
+    {
+      "name": {
+        "en": "Battambang",
+        "kh": "បាត់ដំបង"
+      },
+      "image": "photo-1651650191726-d81c3a84bb25",
+      "interests": [
+        "culture",
+        "temples"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "name": {
+        "en": "Mondulkiri",
+        "kh": "មណ្ឌលគិរី"
+      },
+      "image": "photo-1667371026189-dfd5544cfdf9",
+      "interests": [
+        "nature"
+      ],
+      "sortOrder": 2
+    },
+    {
+      "name": {
+        "en": "Kratie",
+        "kh": "ក្រចេះ"
+      },
+      "image": "photo-1707817643213-35009bae9814",
+      "interests": [
+        "nature",
+        "culture"
+      ],
+      "sortOrder": 3
+    }
+  ],
+  "foods": [
+    {
+      "slug": "fish-amok",
+      "name": {
+        "en": "Fish Amok",
+        "kh": "អាម៉ុកត្រី"
+      },
+      "khmerName": "អាម៉ុកត្រី",
+      "pronunciation": "ah-mok trey",
+      "type": "dish",
+      "provinces": [
+        "siem-reap",
+        "phnom-penh"
+      ],
+      "image": "photo-1722995690313-9ef561d30143",
+      "summary": {
+        "en": "Fish steamed in coconut curry, served in a banana-leaf cup.",
+        "kh": "ត្រីចំហុយជាមួយខ្ទិះ និងគ្រឿង ក្នុងស្លឹកចេក។"
+      },
+      "whatItIs": {
+        "en": "Cambodia's best-known dish. Freshwater fish is folded into kroeung (a paste of lemongrass, galangal, turmeric and kaffir lime), coconut milk and egg, then steamed until it sets like a soft mousse. Proper amok is topped with a swirl of coconut cream and a leaf of noni (slek ngor)."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Khmer restaurants around the Old Market, Siem Reap"
+          },
+          "detail": {
+            "en": "Every menu has it; family-run places often make it fresh to order."
+          }
+        },
+        {
+          "name": {
+            "en": "Riverside restaurants, Phnom Penh"
+          },
+          "detail": {
+            "en": "Order it with rice and a cold drink while watching the river."
+          }
+        }
+      ],
+      "price": {
+        "min": 3,
+        "max": 8,
+        "unit": {
+          "en": "per plate"
+        }
+      },
+      "sortOrder": 0
+    },
+    {
+      "slug": "lok-lak",
+      "name": {
+        "en": "Beef Lok Lak",
+        "kh": "ឡុកឡាក់"
+      },
+      "khmerName": "ឡុកឡាក់សាច់គោ",
+      "pronunciation": "lok-lak sach ko",
+      "type": "dish",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap",
+        "kampot"
+      ],
+      "image": "photo-1562565651-7d4948f339eb",
+      "summary": {
+        "en": "Stir-fried beef with a lime and Kampot pepper dipping sauce.",
+        "kh": "សាច់គោឆា ជាមួយទឹកជ្រលក់ក្រូចឆ្មា និងម្រេចកំពត។"
+      },
+      "whatItIs": {
+        "en": "Cubes of beef stir-fried in a sweet, savoury sauce, served on lettuce, tomato and onion, usually with a fried egg and rice. The magic is the dip: lime juice, salt and plenty of black Kampot pepper."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Almost any Khmer restaurant"
+          },
+          "detail": {
+            "en": "A safe, filling choice everywhere in the country."
+          }
+        },
+        {
+          "name": {
+            "en": "Kampot town"
+          },
+          "detail": {
+            "en": "Ask for extra pepper; it's grown just down the road."
+          }
+        }
+      ],
+      "price": {
+        "min": 3,
+        "max": 7,
+        "unit": {
+          "en": "per plate"
+        }
+      },
+      "sortOrder": 1
+    },
+    {
+      "slug": "num-banh-chok",
+      "name": {
+        "en": "Num Banh Chok",
+        "kh": "នំបញ្ចុក"
+      },
+      "khmerName": "នំបញ្ចុក",
+      "pronunciation": "nom bahn-chok",
+      "type": "street",
+      "provinces": [
+        "siem-reap",
+        "phnom-penh",
+        "kampot"
+      ],
+      "image": "photo-1588566565463-180a5b2090d2",
+      "summary": {
+        "en": "Fresh rice noodles with green fish curry. The Khmer breakfast.",
+        "kh": "នំបញ្ចុកសម្លខ្មែរ អាហារពេលព្រឹកពេញនិយម។"
+      },
+      "whatItIs": {
+        "en": "Soft, hand-pressed rice noodles topped with a light green curry made from fish and lemongrass, then piled with fresh herbs, banana flower, cucumber and long beans. Sold from baskets by women who carry them on shoulder poles, and at every morning market."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Morning markets"
+          },
+          "detail": {
+            "en": "Look for the stalls with big pots and trays of herbs, 6–9 am."
+          }
+        },
+        {
+          "name": {
+            "en": "Street vendors in Siem Reap"
+          },
+          "detail": {
+            "en": "Siem Reap's version is famous across the country."
+          }
+        }
+      ],
+      "price": {
+        "min": 1,
+        "max": 2,
+        "unit": {
+          "en": "per bowl"
+        }
+      },
+      "sortOrder": 2
+    },
+    {
+      "slug": "kuy-teav",
+      "name": {
+        "en": "Kuy Teav",
+        "kh": "គុយទាវ"
+      },
+      "khmerName": "គុយទាវ",
+      "pronunciation": "kuy-tee-ow",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "kampot",
+        "koh-kong"
+      ],
+      "image": "photo-1638569099509-2f46eb4bb94e",
+      "summary": {
+        "en": "Pork-bone noodle soup, eaten for breakfast all over the country.",
+        "kh": "គុយទាវទឹកឆ្អឹងជ្រូក សម្រាប់ពេលព្រឹក។"
+      },
+      "whatItIs": {
+        "en": "Rice noodles in a clear broth simmered from pork bones, topped with sliced pork, meatballs, fried garlic and spring onion. You add lime, chilli and bean sprouts at the table. Phnom Penh-style kuy teav adds seafood and offal."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Noodle shops near any market"
+          },
+          "detail": {
+            "en": "Busiest from 6 to 9 am. If it's packed with locals, sit down."
+          }
+        }
+      ],
+      "price": {
+        "min": 1.5,
+        "max": 3,
+        "unit": {
+          "en": "per bowl"
+        }
+      },
+      "sortOrder": 3
+    },
+    {
+      "slug": "bai-sach-chrouk",
+      "name": {
+        "en": "Bai Sach Chrouk",
+        "kh": "បាយសាច់ជ្រូក"
+      },
+      "khmerName": "បាយសាច់ជ្រូក",
+      "pronunciation": "bai sach chrook",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap",
+        "preah-sihanouk"
+      ],
+      "image": "photo-1569058242252-623df46b5025",
+      "summary": {
+        "en": "Grilled pork and broken rice with pickles. Breakfast on a street corner.",
+        "kh": "បាយជាមួយសាច់ជ្រូកអាំង និងជ្រក់។"
+      },
+      "whatItIs": {
+        "en": "Thin slices of pork marinated in coconut milk and garlic, grilled slowly over charcoal and served on broken rice with pickled cucumber and daikon, plus a small bowl of clear soup."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Street-corner grills"
+          },
+          "detail": {
+            "en": "Follow the charcoal smoke, early morning, all over town."
+          }
+        }
+      ],
+      "price": {
+        "min": 1.5,
+        "max": 2.5,
+        "unit": {
+          "en": "per plate"
+        }
+      },
+      "sortOrder": 4
+    },
+    {
+      "slug": "kampot-pepper-crab",
+      "name": {
+        "en": "Crab with Kampot Pepper",
+        "kh": "ក្តាមឆាម្រេចខ្ចី"
+      },
+      "khmerName": "ក្តាមឆាម្រេចខ្ចី",
+      "pronunciation": "k'dam cha m'rech k'chey",
+      "type": "dish",
+      "provinces": [
+        "kampot"
+      ],
+      "image": "photo-1553659971-f01207815844",
+      "summary": {
+        "en": "Fresh blue crab stir-fried with sprigs of green peppercorns.",
+        "kh": "ក្តាមសេះឆាជាមួយម្រេចខ្ចីកំពត។"
+      },
+      "whatItIs": {
+        "en": "The signature dish of the Kampot–Kep coast. Blue swimmer crabs are pulled from traps in the sea, then wok-fried with whole sprigs of young, green Kampot pepper. The peppercorns are fresh and fragrant rather than hot."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Kep Crab Market"
+          },
+          "detail": {
+            "en": "Pick your crab from the traps and have it cooked at a stall behind the market."
+          }
+        },
+        {
+          "name": {
+            "en": "Riverside restaurants in Kampot"
+          },
+          "detail": {
+            "en": "A good fallback if you're not making it to Kep."
+          }
+        }
+      ],
+      "price": {
+        "min": 6,
+        "max": 12,
+        "unit": {
+          "en": "per plate"
+        }
+      },
+      "sortOrder": 5
+    },
+    {
+      "slug": "sach-ko-ang",
+      "name": {
+        "en": "Grilled Beef Skewers",
+        "kh": "សាច់គោអាំង"
+      },
+      "khmerName": "សាច់គោអាំង",
+      "pronunciation": "sach ko ang",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap",
+        "preah-sihanouk",
+        "koh-kong"
+      ],
+      "image": "photo-1720720581218-e20039f18828",
+      "summary": {
+        "en": "Lemongrass beef on sticks, grilled over charcoal at dusk.",
+        "kh": "សាច់គោស្លឹកគ្រៃ អាំងលើធ្យូង ពេលល្ងាច។"
+      },
+      "whatItIs": {
+        "en": "Beef marinated in lemongrass, garlic and palm sugar, threaded onto bamboo sticks and grilled until caramelised. Eaten with pickled green papaya and a baguette, or just on its own while you walk."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Night markets and roadside grills"
+          },
+          "detail": {
+            "en": "They appear around 5 pm, wherever people gather."
+          }
+        }
+      ],
+      "price": {
+        "min": 1,
+        "max": 3,
+        "unit": {
+          "en": "for a handful"
+        }
+      },
+      "sortOrder": 6
+    },
+    {
+      "slug": "tuk-ampov",
+      "name": {
+        "en": "Sugarcane Juice",
+        "kh": "ទឹកអំពៅ"
+      },
+      "khmerName": "ទឹកអំពៅ",
+      "pronunciation": "tuk om-pov",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap",
+        "kampot",
+        "preah-sihanouk",
+        "koh-kong"
+      ],
+      "image": "photo-1781663904776-c2edce194950",
+      "summary": {
+        "en": "Pressed to order with a squeeze of kumquat, over ice.",
+        "kh": "ទឹកអំពៅស្រស់ ជាមួយក្រូចឆ្មា និងទឹកកក។"
+      },
+      "whatItIs": {
+        "en": "Stalks of sugarcane are fed through a hand-cranked or motor press, often with a kumquat or lime for sourness, then poured over crushed ice in a plastic bag or cup. The best way to survive a hot afternoon."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Carts outside markets and schools"
+          },
+          "detail": {
+            "en": "Look for the bundles of green cane stalks."
+          }
+        }
+      ],
+      "price": {
+        "min": 0.5,
+        "max": 1,
+        "unit": {
+          "en": "per glass"
+        }
+      },
+      "sortOrder": 7
+    },
+    {
+      "slug": "khmer-iced-coffee",
+      "name": {
+        "en": "Khmer Iced Coffee",
+        "kh": "កាហ្វេទឹកដោះគោទឹកកក"
+      },
+      "khmerName": "កាហ្វេទឹកដោះគោទឹកកក",
+      "pronunciation": "ka-fe tuk doh ko tuk kok",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap",
+        "kampot",
+        "preah-sihanouk",
+        "koh-kong"
+      ],
+      "image": "photo-1695548825604-62dd3b6ca345",
+      "summary": {
+        "en": "Strong, dark-roast coffee with sweetened condensed milk over ice.",
+        "kh": "កាហ្វេខ្លាំង ជាមួយទឹកដោះគោខាប់ និងទឹកកក។"
+      },
+      "whatItIs": {
+        "en": "Dark-roasted coffee is brewed strong through a cloth filter, then mixed with sweetened condensed milk and poured over ice. Every street corner has a stand; it's how the country starts its day."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Roadside coffee stands"
+          },
+          "detail": {
+            "en": "The cheapest and most local option. Ask for less sweet: 'dak skor tich'."
+          }
+        },
+        {
+          "name": {
+            "en": "Local café chains"
+          },
+          "detail": {
+            "en": "Air-conditioned and good for working."
+          }
+        }
+      ],
+      "price": {
+        "min": 0.75,
+        "max": 2.5,
+        "unit": {
+          "en": "per cup"
+        }
+      },
+      "sortOrder": 8
+    },
+    {
+      "slug": "mee-cha",
+      "name": {
+        "en": "Mee Cha",
+        "kh": "មីឆា"
+      },
+      "khmerName": "មីឆា",
+      "pronunciation": "mee cha",
+      "type": "street",
+      "provinces": [
+        "phnom-penh",
+        "siem-reap"
+      ],
+      "image": "photo-1768885149216-ea51e07e3940",
+      "summary": {
+        "en": "Wok-fried noodles with greens, egg and a little sweet soy.",
+        "kh": "មីឆាជាមួយបន្លែ ពងមាន់ និងទឹកស៊ីអ៊ីវ។"
+      },
+      "whatItIs": {
+        "en": "Yellow or rice noodles tossed in a hot wok with morning glory or Chinese broccoli, egg and a choice of beef, chicken or seafood. Fast, cheap and filling, and every cook has their own style."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Night markets and street carts"
+          },
+          "detail": {
+            "en": "Point at the noodles you want and they'll cook them fresh."
+          }
+        }
+      ],
+      "price": {
+        "min": 1.5,
+        "max": 3,
+        "unit": {
+          "en": "per plate"
+        }
+      },
+      "sortOrder": 9
+    },
+    {
+      "slug": "kep-crab-market",
+      "name": {
+        "en": "Kep Crab Market",
+        "kh": "ផ្សារក្តាមកែប"
+      },
+      "khmerName": "ផ្សារក្តាមកែប",
+      "pronunciation": "psar k'dam Kep",
+      "type": "spot",
+      "provinces": [
+        "kampot"
+      ],
+      "image": "photo-1566720414625-dd96d0ca619d",
+      "summary": {
+        "en": "Crab traps, seafood grills and sunset over the sea.",
+        "kh": "ទ្រុងក្តាម គ្រឿងសមុទ្រអាំង និងថ្ងៃលិចលើសមុទ្រ។"
+      },
+      "whatItIs": {
+        "en": "A seafront market where women wade out to bamboo traps and haul in live crabs. Buy them by the kilo, choose your cooking style, and eat at the wooden restaurants on stilts over the water. Also great for grilled squid and prawns."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Kep, 25 km from Kampot"
+          },
+          "detail": {
+            "en": "Go for a late lunch and stay for the sunset."
+          }
+        }
+      ],
+      "price": {
+        "min": 5,
+        "max": 12,
+        "unit": {
+          "en": "per person"
+        }
+      },
+      "sortOrder": 10
+    },
+    {
+      "slug": "russian-market",
+      "name": {
+        "en": "Russian Market food hall",
+        "kh": "ផ្សារទួលទំពូង"
+      },
+      "khmerName": "ផ្សារទួលទំពូង",
+      "pronunciation": "psar toul tom-poong",
+      "type": "spot",
+      "provinces": [
+        "phnom-penh"
+      ],
+      "image": "photo-1534009866134-9077beffe76b",
+      "summary": {
+        "en": "A maze of stalls with some of Phnom Penh's best cheap eats.",
+        "kh": "ផ្សារដែលមានម្ហូបល្អ និងថោកបំផុតនៅភ្នំពេញ។"
+      },
+      "whatItIs": {
+        "en": "Phnom Penh's favourite market for clothes, crafts and spare parts has a food section in the middle where locals eat noodle soup, rice dishes and desserts at shared counters. The streets around it are full of cafés."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Toul Tom Poung, Phnom Penh"
+          },
+          "detail": {
+            "en": "Go before 11 am, before the tin roof heats up."
+          }
+        }
+      ],
+      "price": {
+        "min": 1.5,
+        "max": 4,
+        "unit": {
+          "en": "per dish"
+        }
+      },
+      "sortOrder": 11
+    },
+    {
+      "slug": "siem-reap-night-market",
+      "name": {
+        "en": "Siem Reap night markets",
+        "kh": "ផ្សាររាត្រីសៀមរាប"
+      },
+      "khmerName": "ផ្សាររាត្រីសៀមរាប",
+      "pronunciation": "psar rea-trey Siem Reap",
+      "type": "spot",
+      "provinces": [
+        "siem-reap"
+      ],
+      "image": "photo-1704419296782-ce2aa082ac8e",
+      "summary": {
+        "en": "Lanterns, grills and fruit shakes after a long temple day.",
+        "kh": "គោម ម្ហូបអាំង និងទឹកក្រឡុកផ្លែឈើ ក្រោយដើរប្រាសាទ។"
+      },
+      "whatItIs": {
+        "en": "Around Pub Street and the river, Siem Reap's night markets fill up with food stalls: skewers, noodles, fried insects for the brave, and fruit shakes blended to order."
+      },
+      "whereToTry": [
+        {
+          "name": {
+            "en": "Around Pub Street & the Old Market"
+          },
+          "detail": {
+            "en": "Best from 6 pm. Walk a few streets away for lower prices."
+          }
+        }
+      ],
+      "price": {
+        "min": 1,
+        "max": 5,
+        "unit": {
+          "en": "per dish"
+        }
+      },
+      "sortOrder": 12
+    }
+  ],
+  "hiddenPlaces": [
+    {
+      "slug": "beng-mealea",
+      "name": {
+        "en": "Beng Mealea",
+        "kh": "ប្រាសាទបឹងមាលា"
+      },
+      "khmerName": "ប្រាសាទបឹងមាលា",
+      "province": "siem-reap",
+      "category": "nature",
+      "images": [
+        "photo-1698063261670-72d63ee5c1a3",
+        "photo-1513733582371-0adb4dac50f6",
+        "photo-1755709922378-ae33cebd7f79"
+      ],
+      "summary": {
+        "en": "A huge 12th-century temple swallowed by the jungle.",
+        "kh": "ប្រាសាទធំសតវត្សទី១២ ដែលព្រៃបានលេបត្របាក់។"
+      },
+      "special": {
+        "en": "Beng Mealea was built around the same time as Angkor Wat, but it has been left largely unrestored. Wooden walkways carry you over collapsed galleries, through tree roots and into courtyards full of moss. It feels like discovering it for the first time, and most tour groups never make it out here."
+      },
+      "howToReach": {
+        "en": "About 65 km east of Siem Reap, roughly 1.5 hours by road. Hire a tuk-tuk or taxi for the day and combine it with Kbal Spean or Koh Ker."
+      },
+      "cost": {
+        "min": 5,
+        "max": 45,
+        "note": {
+          "en": "$5 entry (not included in the Angkor pass), plus $30–40 for a return tuk-tuk."
+        }
+      },
+      "bestTime": {
+        "en": "Early morning, before the day trippers arrive. In the rainy season (July–October) the jungle is at its greenest."
+      },
+      "sortOrder": 0
+    },
+    {
+      "slug": "kampong-phluk",
+      "name": {
+        "en": "Kampong Phluk flooded forest",
+        "kh": "កំពង់ភ្លុក"
+      },
+      "khmerName": "កំពង់ភ្លុក",
+      "province": "siem-reap",
+      "category": "experience",
+      "images": [
+        "photo-1672833475922-36678bbd9f30",
+        "photo-1672833474987-d50e626b7f3d",
+        "photo-1704103259506-6c0ca4d6dca4"
+      ],
+      "summary": {
+        "en": "Stilt houses and a canoe ride through a forest standing in the lake.",
+        "kh": "ផ្ទះសសរខ្ពស់ និងអុំទូកកាត់ព្រៃលិចទឹក។"
+      },
+      "special": {
+        "en": "A fishing village on the edge of the Tonlé Sap, where houses stand on stilts six to ten metres tall. In the wet season, the water rises to their doorsteps and local women paddle you by canoe through a flooded mangrove forest. It's a real working village, so be respectful with your camera."
+      },
+      "howToReach": {
+        "en": "About 16 km southeast of Siem Reap, 45 minutes by tuk-tuk. Boats leave from the village pier."
+      },
+      "cost": {
+        "min": 20,
+        "max": 30,
+        "note": {
+          "en": "Per person, for the boat and a canoe ride. Tuk-tuk extra."
+        }
+      },
+      "bestTime": {
+        "en": "August to December, when the water is high. In the dry season the stilts are fully exposed but boats may not reach the forest."
+      },
+      "sortOrder": 1
+    },
+    {
+      "slug": "phnom-kulen",
+      "name": {
+        "en": "Phnom Kulen",
+        "kh": "ភ្នំគូលែន"
+      },
+      "khmerName": "ភ្នំគូលែន",
+      "province": "siem-reap",
+      "category": "nature",
+      "images": [
+        "photo-1621502133952-2a08498b4d6d",
+        "photo-1621063223871-72880cf5eb51"
+      ],
+      "summary": {
+        "en": "The sacred mountain: waterfalls, river carvings and a giant reclining Buddha.",
+        "kh": "ភ្នំពិសិដ្ឋ៖ ទឹកធ្លាក់ ចម្លាក់ក្នុងទឹក និងព្រះពុទ្ធរូបផ្ទំ។"
+      },
+      "special": {
+        "en": "Where the Khmer Empire was declared in 802 AD. Carvings of lingas cover the riverbed, a giant reclining Buddha is carved into a boulder at the top, and a two-tiered waterfall is where Cambodian families come to picnic and swim at weekends."
+      },
+      "howToReach": {
+        "en": "About 50 km north of Siem Reap, 1.5 hours by car or tuk-tuk. The last stretch is a steep mountain road."
+      },
+      "cost": {
+        "min": 20,
+        "max": 50,
+        "note": {
+          "en": "$20 entry for foreign visitors, plus transport."
+        }
+      },
+      "bestTime": {
+        "en": "September to December, when the waterfall is full. Go on a weekday to avoid crowds."
+      },
+      "sortOrder": 2
+    },
+    {
+      "slug": "tatai-waterfall",
+      "name": {
+        "en": "Tatai Waterfall",
+        "kh": "ទឹកធ្លាក់តាតៃ"
+      },
+      "khmerName": "ទឹកធ្លាក់តាតៃ",
+      "province": "koh-kong",
+      "category": "nature",
+      "images": [
+        "photo-1656554848715-dc195c7484bb",
+        "photo-1621063225827-1e6cb6c75b62"
+      ],
+      "summary": {
+        "en": "A wide, powerful waterfall in the forest, with swimming pools below.",
+        "kh": "ទឹកធ្លាក់ធំ ក្នុងព្រៃ ជាមួយអាងហែលទឹក។"
+      },
+      "special": {
+        "en": "The Tatai River drops over a wide rock shelf in the forest, loud and powerful after the rains. In the dry season the flow calms down and you can swim in the pools below. There are usually more locals than travellers."
+      },
+      "howToReach": {
+        "en": "About 20 km east of Koh Kong town, just off National Road 48. Around 30 minutes by scooter."
+      },
+      "cost": {
+        "min": 1,
+        "max": 10,
+        "note": {
+          "en": "A small entry fee, plus scooter rental and fuel."
+        }
+      },
+      "bestTime": {
+        "en": "November to January for the most water. February to April for swimming."
+      },
+      "sortOrder": 3
+    },
+    {
+      "slug": "chi-phat",
+      "name": {
+        "en": "Chi Phat community",
+        "kh": "សហគមន៍ជីផាត់"
+      },
+      "khmerName": "សហគមន៍ជីផាត់",
+      "province": "koh-kong",
+      "category": "experience",
+      "images": [
+        "photo-1697574760865-6ff90b62c189",
+        "photo-1602604193553-28c132dac0a7"
+      ],
+      "summary": {
+        "en": "Community ecotourism in the Cardamom rainforest.",
+        "kh": "ទេសចរណ៍សហគមន៍ ក្នុងព្រៃភ្នំក្រវាញ។"
+      },
+      "special": {
+        "en": "One of Cambodia's first community-based ecotourism projects. People who once hunted and logged the forest now work as guides, leading treks, kayak trips and mountain-bike rides into the Cardamoms. You stay in village homestays or forest camps, and the money goes back to the community."
+      },
+      "howToReach": {
+        "en": "Get off the bus at Andoung Tuek on National Road 48, then take a boat up the Preaek Piphot River (about 2 hours) or a moto along the dirt road."
+      },
+      "cost": {
+        "min": 20,
+        "max": 40,
+        "note": {
+          "en": "Per person per day: homestay, meals and a guided trek."
+        }
+      },
+      "bestTime": {
+        "en": "November to April. Leeches are part of the rainy season experience."
+      },
+      "sortOrder": 4
+    },
+    {
+      "slug": "kampot-pepper-farms",
+      "name": {
+        "en": "Kampot pepper farms",
+        "kh": "ចម្ការម្រេចកំពត"
+      },
+      "khmerName": "ចម្ការម្រេចកំពត",
+      "province": "kampot",
+      "category": "business",
+      "images": [
+        "photo-1720720582549-3516cf11d4a8",
+        "photo-1720720583735-8982ef1a6f3f",
+        "photo-1720720580373-6adefb79aae0"
+      ],
+      "summary": {
+        "en": "Family farms growing the world-famous pepper. Free tours and tastings.",
+        "kh": "ចម្ការគ្រួសារ ដាំម្រេចល្បីលើពិភពលោក។"
+      },
+      "special": {
+        "en": "Black, red and white Kampot pepper all come from the same vine; the colour depends on when it's picked and how it's processed. Small family farms will walk you through the rows, show you the drying racks and let you taste fresh green peppercorns straight off the plant. Buying here supports the growers directly."
+      },
+      "howToReach": {
+        "en": "Most farms are 15–30 km from Kampot town, towards Kep. Go by scooter or tuk-tuk."
+      },
+      "cost": {
+        "min": 0,
+        "max": 10,
+        "note": {
+          "en": "Tours are usually free; a bag of pepper costs $3–10."
+        }
+      },
+      "bestTime": {
+        "en": "The harvest runs from about February to May, when the red peppercorns are picked."
+      },
+      "sortOrder": 5
+    },
+    {
+      "slug": "kampot-river-fireflies",
+      "name": {
+        "en": "Kampot River at dusk",
+        "kh": "ទន្លេកំពត ពេលល្ងាច"
+      },
+      "province": "kampot",
+      "category": "experience",
+      "images": [
+        "photo-1720720581913-88836539cf68",
+        "photo-1720720580439-88d83c710415",
+        "photo-1720720583618-ddf8f581a893"
+      ],
+      "summary": {
+        "en": "Paddle past nipa palms, then float back as the fireflies come out.",
+        "kh": "អុំទូកកាត់ដើមចាក ហើយមើលអំពិលអំពែកពេលល្ងាច។"
+      },
+      "special": {
+        "en": "Upstream from town, the river narrows between nipa palms and fishing boats. Paddle up in the late afternoon, watch the sun drop behind Bokor, then drift back in the dark while fireflies blink along the banks."
+      },
+      "howToReach": {
+        "en": "Riverside guesthouses 2–4 km north of town rent kayaks. Sunset boats leave from the town waterfront."
+      },
+      "cost": {
+        "min": 3,
+        "max": 10,
+        "note": {
+          "en": "Kayak rental or a seat on a shared sunset boat."
+        }
+      },
+      "bestTime": {
+        "en": "Late afternoon, any time of year. Calmest from November to April."
+      },
+      "sortOrder": 6
+    },
+    {
+      "slug": "koh-dach",
+      "name": {
+        "en": "Koh Dach (Silk Island)",
+        "kh": "កោះដាច់"
+      },
+      "khmerName": "កោះដាច់",
+      "province": "phnom-penh",
+      "category": "business",
+      "images": [
+        "photo-1601122940398-04112e74fa35",
+        "photo-1700969227823-b454a5fbdc8f"
+      ],
+      "summary": {
+        "en": "A Mekong island where families still weave silk under their houses.",
+        "kh": "កោះលើទន្លេមេគង្គ ដែលគ្រួសារនៅតែត្បាញសូត្រ។"
+      },
+      "special": {
+        "en": "Just outside the capital, life slows right down. Under many stilt houses you'll find wooden looms where families weave silk scarves and sarongs by hand. Cycle the lanes, buy directly from the weavers, and eat at the bamboo huts along the river beach."
+      },
+      "howToReach": {
+        "en": "About 15 km north-east of central Phnom Penh, 30–45 minutes by tuk-tuk. Rent a bicycle on the island."
+      },
+      "cost": {
+        "min": 5,
+        "max": 25,
+        "note": {
+          "en": "Transport and a bicycle; more if you buy silk (and you will)."
+        }
+      },
+      "bestTime": {
+        "en": "Mornings from November to April, when it's cooler and the weavers are working."
+      },
+      "sortOrder": 7
+    },
+    {
+      "slug": "koh-rong-samloem-west",
+      "name": {
+        "en": "Koh Rong Samloem's quiet side",
+        "kh": "កោះរ៉ុងសន្លឹម ផ្នែកស្ងាត់"
+      },
+      "province": "preah-sihanouk",
+      "category": "nature",
+      "images": [
+        "photo-1595781723824-9213a40e3257",
+        "photo-1628649510843-157abf7493f0"
+      ],
+      "summary": {
+        "en": "A jungle trail from Saracen Bay to a sunset beach with almost no one on it.",
+        "kh": "ផ្លូវដើរកាត់ព្រៃ ទៅឆ្នេរថ្ងៃលិចដ៏ស្ងាត់។"
+      },
+      "special": {
+        "en": "Most visitors stay on Saracen Bay. Walk the jungle trail across the island (30–45 minutes) and you reach west-facing beaches with soft sand, clear water and a view of the sun dropping into the Gulf of Thailand."
+      },
+      "howToReach": {
+        "en": "Speedboat from Sihanoukville to Saracen Bay (about 45 minutes), then follow the marked trail inland. Bring water and good shoes."
+      },
+      "cost": {
+        "min": 15,
+        "max": 25,
+        "note": {
+          "en": "The speedboat ticket each way. The walk is free."
+        }
+      },
+      "bestTime": {
+        "en": "November to April for calm seas. Walk over in the afternoon and stay for sunset."
+      },
+      "sortOrder": 8
+    }
+  ],
+  "budgetPlans": [
+    {
+      "slug": "kampot-kep-100",
+      "title": {
+        "en": "Kampot & Kep on a shoestring",
+        "kh": "កំពត និងកែប ថវិកាតិច"
+      },
+      "province": "kampot",
+      "image": "photo-1720720583618-ddf8f581a893",
+      "days": 3,
+      "people": 2,
+      "summary": {
+        "en": "River sunsets, crab in Kep and a pepper farm, for $100 between two.",
+        "kh": "ថ្ងៃលិចលើទន្លេ ក្តាមកែប និងចម្ការម្រេច ក្នុងតម្លៃ $100 សម្រាប់ពីរនាក់។"
+      },
+      "costs": {
+        "transport": [
+          {
+            "label": {
+              "en": "Bus Phnom Penh ⇄ Kampot, 2 people return"
+            },
+            "amount": 28
+          },
+          {
+            "label": {
+              "en": "Scooter rental, 1 day"
+            },
+            "amount": 7
+          },
+          {
+            "label": {
+              "en": "Fuel"
+            },
+            "amount": 5
+          }
+        ],
+        "stay": [
+          {
+            "label": {
+              "en": "Riverside guesthouse, double room × 2 nights"
+            },
+            "amount": 24
+          }
+        ],
+        "food": [
+          {
+            "label": {
+              "en": "Breakfasts: num banh chok & iced coffee"
+            },
+            "amount": 6
+          },
+          {
+            "label": {
+              "en": "Lunches at markets and local shops"
+            },
+            "amount": 10
+          },
+          {
+            "label": {
+              "en": "Kep Crab Market lunch, shared"
+            },
+            "amount": 8
+          },
+          {
+            "label": {
+              "en": "Dinners at the night market"
+            },
+            "amount": 6
+          }
+        ],
+        "activities": [
+          {
+            "label": {
+              "en": "Pepper farm tour"
+            },
+            "amount": 0
+          },
+          {
+            "label": {
+              "en": "Sunset firefly boat, 2 people"
+            },
+            "amount": 6
+          }
+        ]
+      },
+      "outline": [
+        {
+          "title": {
+            "en": "Arrive & slow down"
+          },
+          "items": [
+            {
+              "en": "Morning bus from Phnom Penh (about 3 hours)"
+            },
+            {
+              "en": "Check in by the river, lunch at a local shop"
+            },
+            {
+              "en": "Walk the old town and the Durian Roundabout"
+            },
+            {
+              "en": "Sunset boat upriver to see the fireflies"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Crab & pepper"
+          },
+          "items": [
+            {
+              "en": "Rent a scooter and ride 25 km to Kep"
+            },
+            {
+              "en": "Lunch at the Crab Market: crab with green Kampot pepper"
+            },
+            {
+              "en": "Free tour at a pepper farm on the way back"
+            },
+            {
+              "en": "Dinner at the night market"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Breakfast & home"
+          },
+          "items": [
+            {
+              "en": "Num banh chok breakfast at the market"
+            },
+            {
+              "en": "Iced coffee by the river"
+            },
+            {
+              "en": "Early afternoon bus back to Phnom Penh"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        {
+          "en": "Share one scooter between two to halve the cost."
+        },
+        {
+          "en": "Buy pepper at the farm. It's fresher, and cheaper than in town."
+        },
+        {
+          "en": "Carry small notes and riel for markets and tuk-tuks."
+        }
+      ],
+      "sortOrder": 0
+    },
+    {
+      "slug": "siem-reap-temples",
+      "title": {
+        "en": "Temples & floating villages",
+        "kh": "ប្រាសាទ និងភូមិបណ្តែតទឹក"
+      },
+      "province": "siem-reap",
+      "image": "photo-1606231140504-b6ec6cbbbf6b",
+      "days": 3,
+      "people": 1,
+      "summary": {
+        "en": "Sunrise at Angkor Wat, a full temple day and a boat on the Tonlé Sap.",
+        "kh": "ថ្ងៃរះនៅអង្គរវត្ត ដើរប្រាសាទពេញមួយថ្ងៃ និងជិះទូកលើទន្លេសាប។"
+      },
+      "costs": {
+        "transport": [
+          {
+            "label": {
+              "en": "Bus Phnom Penh ⇄ Siem Reap, return"
+            },
+            "amount": 26
+          },
+          {
+            "label": {
+              "en": "Tuk-tuk for a full temple day"
+            },
+            "amount": 20
+          },
+          {
+            "label": {
+              "en": "Bicycle rental, 1 day"
+            },
+            "amount": 3
+          }
+        ],
+        "stay": [
+          {
+            "label": {
+              "en": "Hostel or guesthouse × 2 nights"
+            },
+            "amount": 24
+          }
+        ],
+        "food": [
+          {
+            "label": {
+              "en": "Breakfasts"
+            },
+            "amount": 6
+          },
+          {
+            "label": {
+              "en": "Lunches near the temples"
+            },
+            "amount": 12
+          },
+          {
+            "label": {
+              "en": "Dinners at the night market"
+            },
+            "amount": 12
+          }
+        ],
+        "activities": [
+          {
+            "label": {
+              "en": "Angkor 1-day pass"
+            },
+            "amount": 37
+          },
+          {
+            "label": {
+              "en": "Kampong Phluk boat trip"
+            },
+            "amount": 20
+          }
+        ]
+      },
+      "outline": [
+        {
+          "title": {
+            "en": "Arrive & explore town"
+          },
+          "items": [
+            {
+              "en": "Morning bus from Phnom Penh (about 6 hours)"
+            },
+            {
+              "en": "Buy your Angkor pass at the official ticket centre"
+            },
+            {
+              "en": "Dinner and a wander through the night markets"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Angkor day"
+          },
+          "items": [
+            {
+              "en": "Sunrise at Angkor Wat"
+            },
+            {
+              "en": "Bayon and Angkor Thom before midday"
+            },
+            {
+              "en": "Lunch break, then Ta Prohm in the afternoon"
+            },
+            {
+              "en": "Sunset from Pre Rup"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "On the lake & home"
+          },
+          "items": [
+            {
+              "en": "Cycle to breakfast in town"
+            },
+            {
+              "en": "Morning boat at Kampong Phluk"
+            },
+            {
+              "en": "Afternoon or night bus back to Phnom Penh"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        {
+          "en": "Hire your tuk-tuk driver the day before and agree the route and price."
+        },
+        {
+          "en": "Temples are quietest from 11 am to 2 pm, when tour groups go for lunch."
+        },
+        {
+          "en": "Cover shoulders and knees for Angkor Wat's upper level."
+        }
+      ],
+      "sortOrder": 1
+    },
+    {
+      "slug": "koh-rong-escape",
+      "title": {
+        "en": "Koh Rong island escape",
+        "kh": "គេចទៅកោះរ៉ុង"
+      },
+      "province": "preah-sihanouk",
+      "image": "photo-1651510689604-4d2d85daa479",
+      "days": 4,
+      "people": 2,
+      "summary": {
+        "en": "Bungalows, white sand and glowing plankton, for two.",
+        "kh": "បឹងហ្គាឡូ ខ្សាច់ស និងប្លង់តុងភ្លឺ សម្រាប់ពីរនាក់។"
+      },
+      "costs": {
+        "transport": [
+          {
+            "label": {
+              "en": "Bus Phnom Penh ⇄ Sihanoukville, 2 people return"
+            },
+            "amount": 48
+          },
+          {
+            "label": {
+              "en": "Tuk-tuk to the pier and back"
+            },
+            "amount": 5
+          },
+          {
+            "label": {
+              "en": "Speedboat to Koh Rong, 2 people return"
+            },
+            "amount": 50
+          }
+        ],
+        "stay": [
+          {
+            "label": {
+              "en": "Beach bungalow × 3 nights"
+            },
+            "amount": 75
+          }
+        ],
+        "food": [
+          {
+            "label": {
+              "en": "Breakfasts"
+            },
+            "amount": 20
+          },
+          {
+            "label": {
+              "en": "Lunches: fried rice, fresh fruit"
+            },
+            "amount": 32
+          },
+          {
+            "label": {
+              "en": "Seafood BBQ dinners"
+            },
+            "amount": 40
+          }
+        ],
+        "activities": [
+          {
+            "label": {
+              "en": "Snorkelling boat trip, 2 people"
+            },
+            "amount": 30
+          },
+          {
+            "label": {
+              "en": "Night swim with glowing plankton"
+            },
+            "amount": 0
+          }
+        ]
+      },
+      "outline": [
+        {
+          "title": {
+            "en": "Bus & boat"
+          },
+          "items": [
+            {
+              "en": "Early bus to Sihanoukville (3–4 hours)"
+            },
+            {
+              "en": "Afternoon speedboat to Koh Rong"
+            },
+            {
+              "en": "Sunset on the beach"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Beach day"
+          },
+          "items": [
+            {
+              "en": "Walk or take a boat taxi to Long Set or Sok San beach"
+            },
+            {
+              "en": "Seafood BBQ for dinner"
+            },
+            {
+              "en": "Night swim to see the plankton glow (best on moonless nights)"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "On the water"
+          },
+          "items": [
+            {
+              "en": "Half-day snorkelling trip"
+            },
+            {
+              "en": "Afternoon in a hammock"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Back to the city"
+          },
+          "items": [
+            {
+              "en": "Morning swim"
+            },
+            {
+              "en": "Midday speedboat, then the bus to Phnom Penh"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        {
+          "en": "Book a return speedboat ticket; it's usually cheaper than two singles."
+        },
+        {
+          "en": "Bring cash. ATMs on the islands are few and unreliable."
+        },
+        {
+          "en": "Pack reef-safe sunscreen and a torch for the jungle paths."
+        }
+      ],
+      "sortOrder": 2
+    },
+    {
+      "slug": "phnom-penh-in-a-day",
+      "title": {
+        "en": "Phnom Penh in a day",
+        "kh": "ភ្នំពេញ មួយថ្ងៃ"
+      },
+      "province": "phnom-penh",
+      "image": "photo-1672858818108-f698cd979ce8",
+      "days": 1,
+      "people": 2,
+      "summary": {
+        "en": "The Royal Palace, a market lunch and a sunset river cruise.",
+        "kh": "ព្រះបរមរាជវាំង អាហារថ្ងៃត្រង់នៅផ្សារ និងជិះទូកមើលថ្ងៃលិច។"
+      },
+      "costs": {
+        "transport": [
+          {
+            "label": {
+              "en": "Tuk-tuks via PassApp or Grab, all day"
+            },
+            "amount": 10
+          }
+        ],
+        "stay": [
+          {
+            "label": {
+              "en": "Day trip: no hotel needed"
+            },
+            "amount": 0
+          }
+        ],
+        "food": [
+          {
+            "label": {
+              "en": "Breakfast: kuy teav"
+            },
+            "amount": 4
+          },
+          {
+            "label": {
+              "en": "Lunch at Central Market"
+            },
+            "amount": 7
+          },
+          {
+            "label": {
+              "en": "Iced coffee break"
+            },
+            "amount": 3
+          },
+          {
+            "label": {
+              "en": "Street food dinner by the river"
+            },
+            "amount": 6
+          }
+        ],
+        "activities": [
+          {
+            "label": {
+              "en": "Royal Palace & Silver Pagoda, 2 people"
+            },
+            "amount": 20
+          },
+          {
+            "label": {
+              "en": "Sunset river cruise, 2 people"
+            },
+            "amount": 10
+          }
+        ]
+      },
+      "outline": [
+        {
+          "title": {
+            "en": "A full day in the capital"
+          },
+          "items": [
+            {
+              "en": "Kuy teav breakfast at a local noodle shop"
+            },
+            {
+              "en": "Royal Palace & Silver Pagoda (it closes over lunch, so go early)"
+            },
+            {
+              "en": "Lunch at Central Market"
+            },
+            {
+              "en": "Afternoon at the National Museum (+$10 each) or a café break"
+            },
+            {
+              "en": "Sunset river cruise from Sisowath Quay"
+            },
+            {
+              "en": "Street food dinner along the riverside"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        {
+          "en": "Use PassApp or Grab for fixed tuk-tuk prices."
+        },
+        {
+          "en": "Dress modestly for the Royal Palace: shoulders and knees covered."
+        }
+      ],
+      "sortOrder": 3
+    },
+    {
+      "slug": "koh-kong-waterfalls",
+      "title": {
+        "en": "Koh Kong waterfalls & mangroves",
+        "kh": "ទឹកធ្លាក់ និងព្រៃកោងកាង កោះកុង"
+      },
+      "province": "koh-kong",
+      "image": "photo-1656554848715-dc195c7484bb",
+      "days": 3,
+      "people": 2,
+      "summary": {
+        "en": "A waterfall swim, a mangrove boardwalk and an empty island beach.",
+        "kh": "ហែលទឹកធ្លាក់ ដើរលើស្ពានព្រៃកោងកាង និងឆ្នេរកោះស្ងាត់។"
+      },
+      "costs": {
+        "transport": [
+          {
+            "label": {
+              "en": "Bus Phnom Penh ⇄ Koh Kong, 2 people return"
+            },
+            "amount": 48
+          },
+          {
+            "label": {
+              "en": "Scooter rental × 2 days"
+            },
+            "amount": 16
+          },
+          {
+            "label": {
+              "en": "Fuel"
+            },
+            "amount": 6
+          }
+        ],
+        "stay": [
+          {
+            "label": {
+              "en": "Guesthouse double room × 2 nights"
+            },
+            "amount": 30
+          }
+        ],
+        "food": [
+          {
+            "label": {
+              "en": "Breakfasts"
+            },
+            "amount": 12
+          },
+          {
+            "label": {
+              "en": "Lunches"
+            },
+            "amount": 18
+          },
+          {
+            "label": {
+              "en": "Fresh seafood dinners"
+            },
+            "amount": 18
+          }
+        ],
+        "activities": [
+          {
+            "label": {
+              "en": "Peam Krasop mangrove walk, 2 people"
+            },
+            "amount": 10
+          },
+          {
+            "label": {
+              "en": "Tatai waterfall entry"
+            },
+            "amount": 2
+          },
+          {
+            "label": {
+              "en": "Boat trip to Koh Kong Krao, 2 people"
+            },
+            "amount": 30
+          }
+        ]
+      },
+      "outline": [
+        {
+          "title": {
+            "en": "Into the wild coast"
+          },
+          "items": [
+            {
+              "en": "Morning bus from Phnom Penh (5–6 hours)"
+            },
+            {
+              "en": "Sunset walk along the Koh Kong riverside"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Waterfall & mangroves"
+          },
+          "items": [
+            {
+              "en": "Scooter to Tatai waterfall and swim in the pools"
+            },
+            {
+              "en": "Lunch on the way back"
+            },
+            {
+              "en": "Late afternoon on the Peam Krasop mangrove boardwalk"
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Island & home"
+          },
+          "items": [
+            {
+              "en": "Early boat to a Koh Kong Krao beach"
+            },
+            {
+              "en": "Afternoon bus back to Phnom Penh"
+            }
+          ]
+        }
+      ],
+      "tips": [
+        {
+          "en": "Waterfalls are strongest in November and December."
+        },
+        {
+          "en": "Bring insect repellent for the mangroves."
+        }
+      ],
+      "sortOrder": 4
+    }
+  ]
+}

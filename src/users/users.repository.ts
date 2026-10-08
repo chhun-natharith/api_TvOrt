@@ -107,7 +107,7 @@ export class UsersRepository {
 
   updateProfileImage(
     id: number,
-    profileImage: string,
+    profileImage: string | null,
   ): Promise<UserWithRoleName> {
     return this.prisma.user.update({
       where: { id },

@@ -1,6 +1,8 @@
 # Database Design
 
-A realistic e-commerce schema covering **Users, Roles, Permissions, Categories, Products, Product Variants, Orders, Order Items,** and **Refresh Tokens** — sized to practice core NestJS concepts (relationships, DTOs, auth, RBAC, pagination, transactions) without enterprise-level overhead.
+The API backs the **TvOrt** travel guide (Next.js frontend, `tv_ort_v2`). Auth (users, roles, permissions, refresh tokens) is unchanged from the original inventory project; the content tables were rebuilt from the frontend's former hard-coded data (`lib/data/*.ts`).
+
+PostgreSQL + Prisma. Schema: `prisma/schema.prisma`. Seed: `prisma/seed.ts` + `prisma/seed-data/content.json`.
 
 ## Entity Relationship Diagram
 
@@ -9,326 +11,73 @@ erDiagram
     ROLES ||--o{ USERS : "assigned to"
     ROLES ||--o{ ROLE_PERMISSIONS : has
     PERMISSIONS ||--o{ ROLE_PERMISSIONS : "granted via"
-    CATEGORIES ||--o{ PRODUCTS : contains
-    PRODUCTS ||--o{ PRODUCT_VARIANTS : has
-    USERS ||--o{ ORDERS : places
     USERS ||--o{ REFRESH_TOKENS : owns
-    ORDERS ||--o{ ORDER_ITEMS : contains
-    PRODUCT_VARIANTS ||--o{ ORDER_ITEMS : "ordered as"
+    USERS ||--o{ MEDIA : uploads
 
-    USERS {
-        int id PK
-        string name
-        string email UK
-        string password
-        enum status
-        int roleId FK
-        datetime createdAt
-        datetime updatedAt
-    }
+    PROVINCES ||--o{ PROVINCE_TOP_PLACES : "highlights"
+    PROVINCES ||--o{ PROVINCE_TRANSPORTS : "how to get there"
+    PROVINCES }o--o{ FOODS : "found in"
+    PROVINCES ||--o{ HIDDEN_PLACES : contains
+    PROVINCES ||--o{ BUDGET_PLANS : has
+    FOODS ||--o{ FOOD_VENUES : "where to try"
+    BUDGET_PLANS ||--o{ BUDGET_PLAN_COSTS : "cost lines"
+    BUDGET_PLANS ||--o{ BUDGET_PLAN_DAYS : itinerary
 
-    ROLES {
-        int id PK
-        string name UK
-        string description
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    PERMISSIONS {
-        uuid id PK
-        string name UK
-        string description
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    ROLE_PERMISSIONS {
-        int roleId PK_FK
-        uuid permissionId PK_FK
-        datetime createdAt
-    }
-
-    CATEGORIES {
-        uuid id PK
-        string name UK
-        string description
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    PRODUCTS {
-        uuid id PK
-        uuid categoryId FK
-        string name
-        string description
-        string image
-        enum status
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    PRODUCT_VARIANTS {
-        uuid id PK
-        uuid productId FK
-        string sku UK
-        string barcode UK
-        string color
-        string size
-        decimal price
-        decimal cost
-        int quantity
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    ORDERS {
-        uuid id PK
-        int userId FK
-        string orderNumber UK
-        decimal total
-        enum status
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    ORDER_ITEMS {
-        uuid id PK
-        uuid orderId FK
-        uuid productVariantId FK
-        int quantity
-        decimal price
-        decimal subtotal
-        datetime createdAt
-        datetime updatedAt
-    }
-
-    REFRESH_TOKENS {
-        uuid id PK
-        int userId FK
-        string tokenHash UK
-        datetime expiresAt
-        datetime revokedAt
-        datetime createdAt
-    }
+    UPCOMING_PROVINCES
+    NEWSLETTER_SUBSCRIBERS
+    CONTACT_MESSAGES
 ```
 
-**Relationship chain:** `Role → User → Order → Order Item ← Product Variant ← Product ← Category`
+## Conventions
 
----
+- **Localized text.** Columns marked _localized_ are `Json` holding `{ "en": "...", "kh": "..." }` (`kh` optional). This is the frontend's `Text` type, so `tx(value, locale)` works on API responses unchanged. Validated on write by `LocalizedTextDto`.
+- **Slugs.** `provinces`, `foods`, `hidden_places`, `budget_plans` are addressed by unique `slug` in URLs and in cross-references (`"province": "kampot"`).
+- **`sortOrder`.** Display order, lowest first. Child rows get their order from array position on write.
+- **Money.** `Decimal(10,2)` USD, returned to clients as plain JSON numbers.
+- **Enums** (`Interest`, `FoodType`, `PlaceCategory`, `CostCategory`) are lowercase on purpose: they are the keys the frontend uses for its type unions and label lookups.
+- **Images** are plain strings (Unsplash photo id, URL or uploaded path); the frontend's image loader decides how to render them.
+- Child collections are **replaced wholesale** when sent on update (`topPlaces`, `gettingThere`, `whereToTry`, `provinces`, `costs`, `outline`, `tips`, `images`).
 
-## 1. Users
+## Auth tables (unchanged)
 
-Stores the people who can log into the system.
+`users`, `roles`, `permissions`, `role_permissions`, `refresh_tokens`, plus `media` (file uploads). See the original RBAC design in `.kiro/specs/role-permission-rbac/`.
 
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | Int | PK, autoincrement | Primary key |
-| name | String | required | User's full name |
-| email | String | unique | Login email |
-| password | String | required | Hashed password |
-| status | UserStatus | default: `ACTIVE` | `ACTIVE` or `INACTIVE` |
-| roleId | Int? | FK → Roles, nullable | Assigned role |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
+Roles: **Admin** (everything), **Support** (edit content, upload media, handle visitor messages), **Customer** (default for self-registration; no admin access).
 
-**Indexes:** `roleId`
+## Content tables
 
----
+### provinces
+`slug` UK · `name`, `tagline`, `whyGo`, `bestSeasonMonths`, `bestSeasonDetail`, `goodToKnow?`, `budgetNote` (_localized_) · `image` · `interests Interest[]` · `budgetStay/Food/Transport/Activities` (USD per person per day) · `sortOrder`
 
-## 2. Roles
+### province_top_places · province_transports
+Ordered children of a province (cascade delete). Top places: `name`, `description`, `image`. Transports ("How to get there"): `mode`, `detail`.
 
-Named permission groups that can be assigned to users (RBAC).
+### upcoming_provinces
+"Coming soon" teasers: `name`, `image`, `interests[]`. Separate from `provinces` because they carry none of the page content. To launch one, create the province and delete the teaser.
 
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | Int | PK, autoincrement | Primary key |
-| name | String | unique | Role name (e.g. `admin`, `staff`) |
-| description | String? | nullable | Optional description |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
+### foods · food_venues · `_FoodToProvince`
+`slug` UK · `name`, `summary`, `whatItIs`, `priceUnit` (_localized_) · `khmerName`, `pronunciation` · `type FoodType` · `priceMin/priceMax` · `image` · `sortOrder`.
+`food_venues` = "where to try it" rows. `_FoodToProvince` is Prisma's implicit many-to-many join (cascade on both sides).
 
----
+### hidden_places
+`slug` UK · `provinceId` FK (RESTRICT) · `category PlaceCategory` · `name`, `summary`, `special`, `howToReach`, `costNote`, `bestTime` (_localized_) · `khmerName?` · `images String[]` (first = cover) · `costMin/costMax` · `sortOrder`
 
-## 3. Permissions
+### budget_plans · budget_plan_costs · budget_plan_days
+`budget_plans`: `slug` UK, `provinceId` FK (RESTRICT), `title`, `summary` (_localized_), `tips` (JSON array of localized), `days`, `people`, `image`, `sortOrder`.
+`budget_plan_costs`: one line per cost (`category CostCategory`, `label`, `amount`). Totals are **computed** by the API (`total`, `categoryTotals`), never stored.
+`budget_plan_days`: one itinerary day (`title`, `items` = JSON array of localized). Day number = position by `sortOrder`.
 
-Granular action flags that can be attached to roles.
+## Visitor submissions
 
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| name | String | unique | Permission name (e.g. `products:create`) |
-| description | String? | nullable | Optional description |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
+| Table | Written by | Notes |
+|---|---|---|
+| `newsletter_subscribers` | `POST /newsletter/subscribe` | `email` unique, stored lowercase; re-subscribing is a no-op |
+| `contact_messages` | `POST /contact-messages` | `readAt` null = unread |
 
----
+## Deleting a province
 
-## 4. Role Permissions
+`hidden_places.provinceId` and `budget_plans.provinceId` are `RESTRICT`: the API answers **409** until those rows are moved or deleted. A province's top places, transports and food links cascade.
 
-Join table linking roles to their granted permissions.
+## Derived, not stored
 
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| roleId | Int | PK, FK → Roles (cascade delete) | Role reference |
-| permissionId | UUID | PK, FK → Permissions (cascade delete) | Permission reference |
-| createdAt | DateTime | default: now | Granted timestamp |
-
-**Composite PK:** `(roleId, permissionId)`  
-**Indexes:** `permissionId`
-
----
-
-## 5. Categories
-
-Groups products together (e.g. Electronics, Fashion, Accessories).
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| name | String | unique | Category name |
-| description | String? | nullable | Optional description |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
-
----
-
-## 6. Products
-
-Represents the product itself, not individual stock (e.g. "iPhone 16 Pro").
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| categoryId | UUID | FK → Categories | Parent category |
-| name | String | required | Product name |
-| description | String? | nullable | Product description |
-| image | String? | nullable | Main image URL |
-| status | ProductStatus | default: `ACTIVE` | `ACTIVE` or `INACTIVE` |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
-
-**Indexes:** `categoryId`
-
----
-
-## 7. Product Variants
-
-Represents sellable variations of a product (e.g. iPhone 16 Pro / Black / 128GB vs. iPhone 16 Pro / White / 256GB).
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| productId | UUID | FK → Products | Parent product |
-| sku | String | unique | Stock Keeping Unit |
-| barcode | String? | unique, nullable | Barcode |
-| color | String? | nullable | Product color |
-| size | String? | nullable | Size |
-| price | Decimal(12,2) | required | Selling price |
-| cost | Decimal(12,2) | required | Purchase cost |
-| quantity | Int | default: 0 | Current stock quantity |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
-
-**Indexes:** `productId`
-
-> For v1, `quantity` lives directly on the variant. As the app grows, move stock management into a dedicated inventory module with movement tracking.
-
----
-
-## 8. Orders
-
-Represents a customer's order.
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| userId | Int | FK → Users | Order owner |
-| orderNumber | String | unique | Human-readable order number |
-| total | Decimal(12,2) | required | Total order amount |
-| status | OrderStatus | default: `PENDING` | `PENDING`, `PAID`, `SHIPPED`, `COMPLETED`, `CANCELLED` |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
-
-**Indexes:** `userId`
-
----
-
-## 9. Order Items
-
-Stores the line items included in an order.
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| orderId | UUID | FK → Orders | Parent order |
-| productVariantId | UUID | FK → Product Variants | Variant purchased |
-| quantity | Int | required | Quantity ordered |
-| price | Decimal(12,2) | required | Price at time of purchase |
-| subtotal | Decimal(12,2) | required | `price × quantity` |
-| createdAt | DateTime | default: now | Created timestamp |
-| updatedAt | DateTime | auto-updated | Updated timestamp |
-
-**Indexes:** `orderId`, `productVariantId`
-
-> `price` is snapshotted at order time — if a variant's price changes later, historical orders still reflect what the customer actually paid.
-
----
-
-## 10. Refresh Tokens
-
-Stores hashed refresh tokens for JWT rotation and revocation.
-
-| Field | Type | Constraints | Description |
-|---|---|---|---|
-| id | UUID | PK | Primary key |
-| userId | Int | FK → Users | Token owner |
-| tokenHash | String | unique | Hashed refresh token |
-| expiresAt | DateTime | required | Expiry timestamp |
-| revokedAt | DateTime? | nullable | Set when token is revoked |
-| createdAt | DateTime | default: now | Created timestamp |
-
-**Indexes:** `userId`
-
----
-
-## Enums
-
-| Enum | Values |
-|---|---|
-| UserStatus | `ACTIVE`, `INACTIVE` |
-| ProductStatus | `ACTIVE`, `INACTIVE` |
-| OrderStatus | `PENDING`, `PAID`, `SHIPPED`, `COMPLETED`, `CANCELLED` |
-
----
-
-## Future Expansion
-
-Once comfortable with the current schema, these can be added without redesigning existing tables:
-
-- Suppliers
-- Purchase Orders
-- Warehouses
-- Inventory Movements
-- Payments
-- Coupons
-- Reviews
-- Addresses
-- Wishlists
-- Audit Logs
-
----
-
-## Why This Scope Works for Learning NestJS
-
-This schema covers:
-
-- **One-to-Many relationships:** Category → Products, Product → Variants, Order → Order Items, User → Orders
-- **Many-to-Many via join table:** Role ↔ Permission through `RolePermission`
-- **RBAC:** Role-based access control with granular permissions per role
-- **JWT auth with refresh tokens:** Secure token rotation and revocation
-- **CRUD operations** across all resource types
-- **Validation with DTOs** and class-validator
-- **Pagination and filtering** on list endpoints
-- **Transaction handling** (e.g. creating an order + decrementing variant stock atomically)
-- **Decimal precision** (`Decimal(12,2)`) for monetary values
+Province `planSlug` (its first plan by `sortOrder`), `sampleBudget.total`, plan `total` / `categoryTotals`, food `related` (same-province foods) and place `related` (same-province places).
