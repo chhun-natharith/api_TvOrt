@@ -3,11 +3,14 @@ import { Prisma } from '@prisma/client';
 import { PrismaService } from '../prisma/prisma.service';
 
 /**
- * A User row joined with its role name only — the minimal shape needed
- * by controllers and the `/me` endpoint.
+ * A User row joined with its role name and avatar URL — the minimal shape
+ * needed by controllers and the `/me` endpoint.
  */
 export type UserWithRoleName = Prisma.UserGetPayload<{
-  include: { role: { select: { name: true } } };
+  include: {
+    role: { select: { name: true } };
+    profileImage: { select: { url: true } };
+  };
 }>;
 
 /**
@@ -24,7 +27,10 @@ export type UserWithPermissions = Prisma.UserGetPayload<{
   };
 }>;
 
-const roleWithName = { role: { select: { name: true } } } as const;
+const roleWithName = {
+  role: { select: { name: true } },
+  profileImage: { select: { url: true } },
+} as const;
 const roleWithPermissions = {
   role: {
     include: {
@@ -105,13 +111,18 @@ export class UsersRepository {
     return this.prisma.user.delete({ where: { id }, include: roleWithName });
   }
 
-  updateProfileImage(
+  /** Points the user's avatar at a media row, or clears it with `null`. */
+  setProfileImage(
     id: number,
-    profileImage: string | null,
+    mediaId: string | null,
   ): Promise<UserWithRoleName> {
     return this.prisma.user.update({
       where: { id },
-      data: { profileImage },
+      data: {
+        profileImage: mediaId
+          ? { connect: { id: mediaId } }
+          : { disconnect: true },
+      },
       include: roleWithName,
     });
   }

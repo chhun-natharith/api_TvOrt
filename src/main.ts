@@ -5,15 +5,12 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
-import { ensureUploadDirs } from './config/multer.config';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  // Ensure upload directories exist
-  ensureUploadDirs();
-
-  // Serve static files from uploads directory
+  // Serve locally stored uploads (StorageService falls back to ./uploads
+  // when no object-storage keys are configured)
   app.useStaticAssets(join(process.cwd(), 'uploads'), {
     prefix: '/uploads/',
   });

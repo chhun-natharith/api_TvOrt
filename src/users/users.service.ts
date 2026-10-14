@@ -7,11 +7,7 @@ import {
 import type { Prisma } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { ROLES } from '../common/constants';
-import {
-  deleteFile,
-  getPublicFileUrl,
-  getFullFilePath,
-} from '../common/utils/file.util';
+import { MediaService } from '../media/media.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FilterUsersDto } from './dto/filter-users.dto';
@@ -23,6 +19,9 @@ import {
   UserWithRoleName,
 } from './users.repository';
 
+/** Storage folder (key prefix) for avatars */
+const PROFILE_IMAGE_FOLDER = 'users';
+
 @Injectable()
 export class UsersService {
   private readonly saltRounds = 10;
@@ -30,6 +29,7 @@ export class UsersService {
   constructor(
     private readonly usersRepository: UsersRepository,
     private readonly prisma: PrismaService,
+    private readonly mediaService: MediaService,
   ) {}
 
   /**
@@ -137,44 +137,48 @@ export class UsersService {
   async remove(id: number): Promise<void> {
     const user = await this.mustFindById(id);
 
-    // Delete profile image if exists
-    if (user.profileImage) {
-      const fullPath = getFullFilePath(user.profileImage);
-      deleteFile(fullPath);
-    }
-
     await this.usersRepository.delete(id);
+
+    // The avatar belongs to this user only, so remove the file and its row
+    if (user.profileImageId) {
+      await this.mediaService.remove(user.profileImageId);
+    }
   }
 
+  /**
+   * Stores the file through MediaService (object storage + `media` row) and
+   * points the user at it. The previous avatar is removed only after the
+   * switch succeeds, so a failed upload never leaves the user without one.
+   */
   async uploadProfileImage(
     id: number,
     file: Express.Multer.File,
+    uploaderId?: number,
   ): Promise<UserEntity> {
     const user = await this.mustFindById(id);
 
-    // Delete old profile image if exists
-    if (user.profileImage) {
-      const fullPath = getFullFilePath(user.profileImage);
-      deleteFile(fullPath);
-    }
+    const media = await this.mediaService.uploadMedia(
+      file,
+      uploaderId,
+      PROFILE_IMAGE_FOLDER,
+    );
+    const updated = await this.usersRepository.setProfileImage(id, media.id);
 
-    const imageUrl = getPublicFileUrl(file.path);
-    const updated = await this.usersRepository.updateProfileImage(id, imageUrl);
+    if (user.profileImageId) {
+      await this.mediaService.remove(user.profileImageId);
+    }
     return new UserEntity(updated);
   }
 
   async deleteProfileImage(id: number): Promise<UserEntity> {
     const user = await this.mustFindById(id);
 
-    if (!user.profileImage) {
+    if (!user.profileImageId) {
       throw new NotFoundException('No profile image found');
     }
 
-    // Delete file from filesystem
-    const fullPath = getFullFilePath(user.profileImage);
-    deleteFile(fullPath);
-
-    const updated = await this.usersRepository.updateProfileImage(id, null);
+    const updated = await this.usersRepository.setProfileImage(id, null);
+    await this.mediaService.remove(user.profileImageId);
     return new UserEntity(updated);
   }
 

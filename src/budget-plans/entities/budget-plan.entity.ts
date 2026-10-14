@@ -1,4 +1,4 @@
-import { CostCategory } from '@prisma/client';
+import type { CostCategory } from '@prisma/client';
 import {
   LocalizedText,
   asText,
@@ -11,9 +11,22 @@ import type {
   BudgetPlanWithTotals,
 } from '../budget-plans.repository';
 
-type CostLine = { label: LocalizedText; amount: number };
+interface CostLine {
+  label: LocalizedText;
+  amount: number;
+}
 
-const CATEGORIES = Object.values(CostCategory);
+/** Build a value for every category; the compiler fails if one is missing. */
+function byCategory<T>(
+  build: (category: CostCategory) => T,
+): Record<CostCategory, T> {
+  return {
+    transport: build('transport'),
+    stay: build('stay'),
+    food: build('food'),
+    activities: build('activities'),
+  };
+}
 
 /** Card shape: lists and the homepage. `total` is for the whole group, USD. */
 export class BudgetPlanSummaryEntity {
@@ -48,20 +61,14 @@ export class BudgetPlanEntity extends BudgetPlanSummaryEntity {
 
   constructor(row: BudgetPlanWithDetail) {
     super(row);
-    this.costs = Object.fromEntries(
-      CATEGORIES.map((category) => [
-        category,
-        row.costs
-          .filter((c) => c.category === category)
-          .map((c) => ({ label: asText(c.label), amount: toNumber(c.amount) })),
-      ]),
-    ) as Record<CostCategory, CostLine[]>;
-    this.categoryTotals = Object.fromEntries(
-      CATEGORIES.map((category) => [
-        category,
-        sumMoney(this.costs[category].map((c) => c.amount)),
-      ]),
-    ) as Record<CostCategory, number>;
+    this.costs = byCategory((category) =>
+      row.costs
+        .filter((c) => c.category === category)
+        .map((c) => ({ label: asText(c.label), amount: toNumber(c.amount) })),
+    );
+    this.categoryTotals = byCategory((category) =>
+      sumMoney(this.costs[category].map((c) => c.amount)),
+    );
     this.outline = row.outline.map((day) => ({
       title: asText(day.title),
       items: asTextList(day.items),

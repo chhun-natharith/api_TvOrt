@@ -5,8 +5,11 @@ import {
   PutObjectCommand,
   DeleteObjectCommand,
 } from '@aws-sdk/client-s3';
-import { extname, join } from 'path';
+import { dirname, extname, join } from 'path';
 import { existsSync, mkdirSync, writeFileSync, unlinkSync } from 'fs';
+
+/** Directory (relative to cwd) used when no object-storage keys are set. */
+export const LOCAL_UPLOAD_ROOT = 'uploads';
 
 export interface UploadResult {
   key: string;
@@ -106,21 +109,18 @@ export class StorageService implements OnModuleInit {
         size: file.size,
       };
     } else {
-      // Local fallback storage
-      const localDir = join(process.cwd(), 'uploads', folder);
+      // Local fallback storage: the object lives at ./uploads/<key> and is
+      // served by the static /uploads route in main.ts
+      const filePath = this.localPath(key);
+      const localDir = dirname(filePath);
       if (!existsSync(localDir)) {
         mkdirSync(localDir, { recursive: true });
       }
-      const filePath = join(
-        localDir,
-        `${sanitizedName}-${timestamp}-${randomHex}${ext}`,
-      );
       writeFileSync(filePath, file.buffer);
 
-      const relativeUrl = `/uploads/${folder}/${sanitizedName}-${timestamp}-${randomHex}${ext}`;
       return {
         key,
-        url: relativeUrl,
+        url: `/${LOCAL_UPLOAD_ROOT}/${key}`,
         bucket: 'local',
         provider: 'LOCAL',
         mimeType: file.mimetype,
@@ -144,7 +144,7 @@ export class StorageService implements OnModuleInit {
         this.logger.error(`Failed to delete object ${key} from storage`, error);
       }
     } else {
-      const localPath = join(process.cwd(), key);
+      const localPath = this.localPath(key);
       if (existsSync(localPath)) {
         try {
           unlinkSync(localPath);
@@ -153,6 +153,10 @@ export class StorageService implements OnModuleInit {
         }
       }
     }
+  }
+
+  private localPath(key: string): string {
+    return join(process.cwd(), LOCAL_UPLOAD_ROOT, key);
   }
 
   private getPublicUrl(key: string): string {

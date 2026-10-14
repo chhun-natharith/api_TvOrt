@@ -46,17 +46,19 @@ enum CostCategory {
 }
 
 model User {
-  id           Int        @id @default(autoincrement())
-  name         String
-  email        String     @unique
-  password     String
-  profileImage String?
-  status       UserStatus @default(ACTIVE)
-  roleId       Int?
-  role         Role?      @relation(fields: [roleId], references: [id])
-  media        Media[]
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
+  id             Int        @id @default(autoincrement())
+  name           String
+  email          String     @unique
+  password       String
+  /// Avatar file; cleared automatically when the media row is deleted
+  profileImageId String?    @unique
+  profileImage   Media?     @relation("UserProfileImage", fields: [profileImageId], references: [id], onDelete: SetNull)
+  status         UserStatus @default(ACTIVE)
+  roleId         Int?
+  role           Role?      @relation(fields: [roleId], references: [id])
+  media          Media[]    @relation("MediaUploader")
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
 
   @@index([roleId])
   @@map("users")
@@ -120,7 +122,8 @@ model Media {
   bucket       String
   provider     String   @default("S3")
   uploaderId   Int?
-  uploader     User?    @relation(fields: [uploaderId], references: [id], onDelete: SetNull)
+  uploader     User?    @relation("MediaUploader", fields: [uploaderId], references: [id], onDelete: SetNull)
+  profileOf    User?    @relation("UserProfileImage")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 

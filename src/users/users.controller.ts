@@ -24,7 +24,13 @@ import {
 } from '@nestjs/swagger';
 import { PERMISSIONS } from '../common/constants';
 import { RequirePermissions } from '../common/decorators/require-permissions.decorator';
-import { userImageMulterConfig } from '../config/multer.config';
+import {
+  userImageMulterConfig,
+  userImageValidation,
+} from '../config/multer.config';
+import { FileValidationPipe } from '../common/pipes/file-validation.pipe';
+import { CurrentUser } from '../common/decorators/current-user.decorator';
+import type { JwtPayload } from '../common/interfaces/jwt-payload.interface';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FilterUsersDto } from './dto/filter-users.dto';
 import { UpdateUserRoleDto } from './dto/update-user-role.dto';
@@ -102,9 +108,11 @@ export class UsersController {
   })
   uploadProfileImage(
     @Param('id', ParseIntPipe) id: number,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile(new FileValidationPipe(userImageValidation))
+    file: Express.Multer.File,
+    @CurrentUser() actor: JwtPayload,
   ) {
-    return this.usersService.uploadProfileImage(id, file);
+    return this.usersService.uploadProfileImage(id, file, actor.sub);
   }
 
   @Patch(':id/profile-image')
@@ -125,9 +133,11 @@ export class UsersController {
   })
   updateProfileImage(
     @Param('id', ParseIntPipe) id: number,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile(new FileValidationPipe(userImageValidation))
+    file: Express.Multer.File,
+    @CurrentUser() actor: JwtPayload,
   ) {
-    return this.usersService.uploadProfileImage(id, file);
+    return this.usersService.uploadProfileImage(id, file, actor.sub);
   }
 
   @Delete(':id/profile-image')
